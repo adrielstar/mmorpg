@@ -1,0 +1,128 @@
+* {
+    -fx-font-family: 'Audiowide';
+    -fx-alignment: center-left;
+    -fx-text-fill: #fff;
+}
+
+.container {
+    -fx-background-image: url("../img/battle80.jpg");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 100% 100%;
+    -fx-alignment: center-left;
+}
+
+#containerLogin {
+    -fx-padding: 0 0 0 150px;
+}
+
+#containerRegister {
+    -fx-padding: 0 0 0 75px;
+}
+
+#containerHomepage {
+    -fx-padding: 10px 5px 5px 10px;
+}
+
+#containerProfile {
+    -fx-padding: 10px 5px 5px 10px;
+}
+
+#scrollPane {
+    -fx-background-color: transparent;
+}
+
+#characterList {
+    -fx-background-color: transparent;
+}
+
+#addBtn {
+    -fx-alignment: center;
+}
+
+#cancelBtn {
+    -fx-alignment: center;
+}
+
+#characterClass #characterLevel #characterRace {
+    -fx-font-size: 14;
+}
+
+.validationLabel {
+    -fx-font-size: 14px;
+    -fx-text-fill: #ff0;
+    -fx-padding: 5px;
+}
+
+#title {
+    -fx-font-size: 48px;
+}
+
+.grid-pane {
+    -fx-vgap: 10;
+}
+
+.grid-pane-home {
+    -fx-hgap: 15;
+}
+
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-opacity: 0;
+}
+
+.tab-pane {
+    -fx-tab-min-width:90px;
+}
+
+.tab {
+    -fx-background-insets: 0 1 0 1,0,0;
+}
+
+.tab-pane .tab {
+    -fx-background-color: #fff;
+}
+
+.tab-pane .tab:selected {
+    -fx-background-color: #f44;
+}
+
+.tab .tab-label {
+    -fx-alignment: CENTER;
+    -fx-font-size: 14px;
+    -fx-text-fill: #f44;
+    -fx-font-weight: bold;
+}
+
+.tab:selected .tab-label {
+    -fx-alignment: CENTER;
+    -fx-text-fill: #fff;
+}
+
+.text-field {
+    -fx-border-radius: 4px;
+    -fx-border-width: 1px;
+    -fx-border-style: solid;
+    -fx-border-color: #fff;
+    -fx-background-color: none;
+    -fx-text-fill: #fff;
+    -fx-fill-width: true;
+    -fx-cursor: pointer;
+    -fx-padding: 5px 10px;
+    -fx-font-size: 1em;
+}
+
+.button {
+    -fx-border-radius: 4px;
+    -fx-border-width: 1px;
+    -fx-border-style: solid;
+    -fx-border-color: #fff;
+    -fx-background-color: none;
+    -fx-text-fill: #fff;
+    -fx-fill-width: true;
+    -fx-cursor: pointer;
+    -fx-padding: 5px 10px;
+    -fx-font-size: 1em;
+}
+
