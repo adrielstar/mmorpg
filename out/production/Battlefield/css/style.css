@@ -1,11 +1,11 @@
 * {
     -fx-font-family: 'Audiowide';
     -fx-alignment: center-left;
-    -fx-text-fill: #fff;
+    -fx-text-fill: #eeeeee;
 }
 
 .container {
-    -fx-background-image: url("../img/battle80.jpg");
+    -fx-background-image: url("../img/battle1.jpg");
     -fx-background-repeat: no-repeat;
     -fx-background-size: 100% 100%;
     -fx-alignment: center-left;

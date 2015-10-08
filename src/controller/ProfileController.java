@@ -78,7 +78,7 @@ public class ProfileController implements Initializable {
     public void openHomepage(ActionEvent actionEvent) throws IOException {
         System.out.println("You clicked me!");
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/fxml/homepage.fxml"));
+        loader.setLocation(getClass().getResource("/fxml/home.fxml"));
         loader.load();
         Parent root = loader.getRoot();
 

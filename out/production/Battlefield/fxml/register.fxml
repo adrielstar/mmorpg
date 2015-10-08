@@ -4,7 +4,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
-<GridPane styleClass="container" fx:id="containerRegister" hgap="50" stylesheets="/css/main.css" xmlns="http://javafx.com/javafx/8"
+<GridPane styleClass="container" fx:id="containerRegister" hgap="50" stylesheets="/css/style.css" xmlns="http://javafx.com/javafx/8"
           xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.RegisterController">
     <ImageView GridPane.rowIndex="0" onMouseClicked="#handleBackButton">
         <image>

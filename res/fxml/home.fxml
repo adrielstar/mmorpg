@@ -3,11 +3,11 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.TextFlow?>
-<AnchorPane styleClass="container" stylesheets="/css/main.css"
+<AnchorPane styleClass="container" stylesheets="/css/style.css"
             xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="controller.HomeController">
 
-    <GridPane fx:id="containerHomepage"
+    <GridPane fx:id="containerHome"
               styleClass="grid-pane, grid-pane-home">
 
         <Button text="Logout"
@@ -27,9 +27,9 @@
 
         <TextFlow fx:id="title"
                   GridPane.rowIndex="3"
-                  GridPane.columnIndex="0"
+                  GridPane.columnIndex="5"
                   GridPane.columnSpan="3">
-            <Label text="Welcome "/>
+            <Label text="Hi, "/>
             <Label fx:id="userFirstNameLabel"/>
             <Label text=" "/>
             <Label fx:id="userLastNameLabel"/>
