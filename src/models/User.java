@@ -1,6 +1,7 @@
 package models;
 
 import org.hibernate.annotations.Proxy;
+import units.Constants;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -10,25 +11,27 @@ import java.util.Set;
 /**
  * Created by Adriel on 10/7/2015.
  */
+
+
 @Entity
 @Table(name = "users")
-@Proxy(lazy=false)
+@Proxy(lazy = false)
 public class User {
 
     @Id
-    @Column(name = "user_name")
+    @Column(name = "user_name", nullable = false)
     private String mUsername;
 
     @Column(name = "balance")
     private Double mBalance;
 
-    @Column(name = "first_name")
+    @Column(name = "first_name", nullable = false)
     private String mFirstName;
 
-    @Column(name = "last_name")
+    @Column(name = "last_name", nullable = false)
     private String mLastName;
 
-    @Column(name = "iban")
+    @Column(name = "iban", nullable = false)
     private String mIban;
 
     @Column(name = "character_slots")
@@ -40,39 +43,36 @@ public class User {
     @Column(name = "months_payed")
     private Integer mMonthsPayed;
 
-    @Column(name = "password")
+    @Column(name = "password", nullable = false)
     private String mPassword;
 
     @Column(name = "banned")
     private Boolean mBanned;
 
-    @ManyToMany(cascade = {CascadeType.ALL}, fetch=FetchType.EAGER)
+    @ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     @JoinTable(name = "owns",
             joinColumns = {@JoinColumn(name = "user_name")},
             inverseJoinColumns = {@JoinColumn(name = "name")})
+    @OrderBy("level")
     private Set<Character> mCharacters = new HashSet<>();
 
-    @ManyToMany(mappedBy = "mUsers")
+    @ManyToMany(mappedBy = "mUsers", fetch = FetchType.EAGER)
     private Set<Server> mServers = new HashSet<>();
 
     public User() {
         super();
     }
 
-    public User(String username, Double balance, String firstName, String lastName,
-                String iban, Integer characterSlots, Timestamp lastPayment,
-                Integer monthsPayed, String password, Boolean banned) {
+    public User(String username, String firstName, String lastName, String iban, String password) {
         super();
         mUsername = username;
-        mBalance = balance;
+        mBalance = Constants.BALANCE;
+        mCharacterSlots = Constants.CHARACTER_SLOTS;
+        mMonthsPayed = Constants.MONTHS_PAYED;
         mFirstName = firstName;
         mLastName = lastName;
         mIban = iban;
-        mCharacterSlots = characterSlots;
-        mLastPayment = lastPayment;
-        mMonthsPayed = monthsPayed;
         mPassword = password;
-        mBanned = banned;
     }
 
     public String getUsername() {
@@ -131,10 +131,6 @@ public class User {
         return mCharacters;
     }
 
-    public Set<Server> getServers() {
-        return mServers;
-    }
-
     public void setCharacter(Character character) {
 
         if (character != null) {
@@ -144,5 +140,13 @@ public class User {
 
     public void setCharacterSlots(Integer slots) {
         mCharacterSlots = slots;
+    }
+
+    public Set<Server> getServer() {
+        return mServers;
+    }
+
+    public void setServer(Server server) {
+        mServers.add(server);
     }
 }

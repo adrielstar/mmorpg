@@ -8,7 +8,6 @@ import models.Character;
 import models.Server;
 import models.User;
 import org.hibernate.FlushMode;
-import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -16,14 +15,15 @@ import org.hibernate.context.internal.ManagedSessionContext;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
 
-
 public class HibernateUtil {
-    private static final SessionFactory SESSION_FACTORY;
-    private static final ServiceRegistry SERVICE_REGISTRY;
 
+    private static SessionFactory SESSION_FACTORY = null;
+    private static ServiceRegistry SERVICE_REGISTRY = null;
+
+    private static HibernateUtil instance;
     private static Session mSession;
 
-    static {
+    private HibernateUtil() {
         try {
             Configuration configuration = getConfiguration();
 
@@ -36,31 +36,40 @@ public class HibernateUtil {
         }
     }
 
-    public static Session openSession() throws HibernateException {
-        mSession = SESSION_FACTORY.openSession();
-        mSession.setFlushMode(FlushMode.MANUAL);
-        ManagedSessionContext.bind(mSession);
+    public static HibernateUtil getInstance() {
+        if (instance == null) {
+            synchronized (HibernateUtil.class) {
+                if (instance == null) {
+                    instance = new HibernateUtil();
+                }
+            }
+        }
+        return instance;
+    }
 
-        System.out.printf("Session is %s \n", mSession.isOpen());
+    public Session openSession() {
+        mSession = SESSION_FACTORY.openSession();
+        mSession.setFlushMode(FlushMode.COMMIT);
+        ManagedSessionContext.bind(mSession);
 
         return mSession;
     }
 
-    public static void commitTransaction(Session session) {
-        ManagedSessionContext.unbind(HibernateUtil.SESSION_FACTORY);
-        session.flush();
-        session.getTransaction().commit();
-        session.close();
+    public void commitTransaction(Session session) {
 
-        System.out.printf("Session is %s \n", session.isConnected() ? "connected" : "not connected");
+        ManagedSessionContext.unbind(HibernateUtil.SESSION_FACTORY);
+        session.getTransaction().commit();
+        session.flush();
+        session.close();
     }
 
-    public static Configuration getConfiguration() {
+    private Configuration getConfiguration() {
         Configuration cfg = new Configuration();
 
         cfg.addAnnotatedClass(User.class);
         cfg.addAnnotatedClass(Character.class);
         cfg.addAnnotatedClass(Server.class);
+
         cfg.setProperty("hibernate.connection.driver_class", "org.postgresql.Driver");
         cfg.setProperty("hibernate.connection.url", "jdbc:postgresql://127.0.0.1:5432/battlefield");
         cfg.setProperty("hibernate.connection.username", "postgres");

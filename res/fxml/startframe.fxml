@@ -7,33 +7,41 @@
             xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="controller.HomeController">
 
-    <GridPane fx:id="containerHome"
+    <GridPane fx:id="containerHomepage"
               styleClass="grid-pane, grid-pane-home">
 
         <Button text="Logout"
-                onAction="#handleLogout"
+                onAction="#handleLogoutBtn_Click"
                 GridPane.rowIndex="0"
                 GridPane.columnIndex="0"/>
 
         <Button text="Profile"
-                onAction="#handleProfile"
+                onAction="#handleProfileBtn_Click"
                 GridPane.rowIndex="0"
                 GridPane.columnIndex="1"/>
 
         <Button text="Characters"
-                onAction="#openCharacter"
+                onAction="#handleCharacterBtn_Click"
                 GridPane.rowIndex="0"
                 GridPane.columnIndex="2"/>
 
-        <TextFlow fx:id="title"
-                  GridPane.rowIndex="3"
-                  GridPane.columnIndex="5"
-                  GridPane.columnSpan="3">
-            <Label text="Hi, "/>
-            <Label fx:id="userFirstNameLabel"/>
-            <Label text=" "/>
-            <Label fx:id="userLastNameLabel"/>
-            <Label text="!"/>
-        </TextFlow>
+
+        <Label fx:id="title" GridPane.rowIndex="3"
+               GridPane.columnIndex="0"
+               GridPane.columnSpan="3"/>
+
+        <Label fx:id="messageLabel"
+               styleClass="validationLabel"
+               GridPane.rowIndex="4"
+               GridPane.columnIndex="0"
+               GridPane.columnSpan="3"/>
+
+        <VBox fx:id="serverBox"
+              spacing="5"
+              GridPane.rowIndex="5"
+              GridPane.columnIndex="0"
+              GridPane.columnSpan="3" />
     </GridPane>
+
+
 </AnchorPane>

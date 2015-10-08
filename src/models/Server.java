@@ -1,5 +1,7 @@
 package models;
 
+import org.hibernate.annotations.Proxy;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -7,8 +9,10 @@ import java.util.Set;
 /**
  * Created by Adriel on 10/7/2015.
  */
+
 @Entity
 @Table(name = "servers")
+@Proxy(lazy = false)
 public class Server {
 
     @Id
@@ -27,7 +31,7 @@ public class Server {
     @Column(name = "connected_users")
     private Integer mServerConnectedUsers;
 
-    @ManyToMany(cascade = {CascadeType.ALL})
+    @ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     @JoinTable(name = "stores",
             joinColumns = {@JoinColumn(name = "address")},
             inverseJoinColumns = {@JoinColumn(name = "user_name")})
@@ -67,7 +71,17 @@ public class Server {
         return mServerConnectedUsers;
     }
 
+    public void setServerConnectedUsers(int serverConnectedUsers) {
+        mServerConnectedUsers = serverConnectedUsers;
+    }
+
     public Set<User> getUsers() {
         return mUsers;
+    }
+
+    public void setUsers(User user) {
+        if (user != null) {
+            mUsers.add(user);
+        }
     }
 }

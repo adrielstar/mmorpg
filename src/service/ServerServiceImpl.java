@@ -21,5 +21,5 @@ public class ServerServiceImpl extends MainDataAccObject implements ServerServic
     public void deleteServer(String serverName) { delete(serverName); }
 
     @Override
-    public void updateServer(Server user) { update(user); }
+    public boolean updateServer(Server server) { return update(server); }
 }

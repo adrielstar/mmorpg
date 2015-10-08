@@ -11,5 +11,5 @@ public interface ServerService {
     boolean addServer(Server server);
     List<Server> ServerList();
     void deleteServer(String serverName);
-    void updateServer(Server user);
+    boolean updateServer(Server user);
 }
