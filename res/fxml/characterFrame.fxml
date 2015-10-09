@@ -1,165 +1,121 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane styleClass="container" stylesheets="/css/style.css" xmlns="http://javafx.com/javafx/8"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CharacterController">
-    <children>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" styleClass="container" stylesheets="/css/style.css"
+            xmlns="http://javafx.com/javafx/8" fx:controller="controller.CharacterController">
 
-        <GridPane fx:id="characterContainer" hgap="50" styleClass="grid-pane">
-            <children>
+    <GridPane fx:id="characterContainer"
+              styleClass="grid-pane, grid-pane-home">
 
+        <Label fx:id="title"
+               GridPane.columnIndex="0"
+               GridPane.rowIndex="1"
+               GridPane.columnSpan="2"/>
 
+        <AnchorPane GridPane.rowIndex="2"
+                    GridPane.columnIndex="0">
 
-                <GridPane GridPane.columnIndex="1" GridPane.rowIndex="1">
-                    <children>
+            <Label text="Free slots: "
+                   AnchorPane.topAnchor="5"
+                   AnchorPane.leftAnchor="10"/>
+            <Label fx:id="slot_Label"
+                   AnchorPane.topAnchor="5"
+                   AnchorPane.leftAnchor="150"/>
 
-                        <Label fx:id="title"
-                               text="YOUR CHARACTERS"
-                               GridPane.columnIndex="1"
-                               GridPane.rowIndex="1"/>
+            <Label text="Add Character: "
+                   AnchorPane.topAnchor="30"
+                   AnchorPane.leftAnchor="10"/>
 
-                        <GridPane fx:id="panel"
-                                  hgap="5.0"
-                                  vgap="5.0"
-                                  GridPane.columnIndex="1"
-                                  GridPane.rowIndex="2">
-                            <children>
+            <Button fx:id="createBtn"
+                    text="Create"
+                    onAction="#createCharacterBtn"
+                    AnchorPane.topAnchor="27"
+                    AnchorPane.leftAnchor="150"/>
 
-                                <Label text="Available SLOTS"
-                                       GridPane.rowIndex="0"
-                                       GridPane.columnIndex="0"/>
+            <Button fx:id="returnBtn"
+                    text="Back"
+                    onAction="#returnBtn"
+                    AnchorPane.topAnchor="27"
+                    AnchorPane.leftAnchor="230"/>
 
-                                <Label fx:id="slot_Label"
-                                       GridPane.columnIndex="1"
-                                       GridPane.rowIndex="0"
-                                       alignment="BASELINE_CENTER" />
+            <ScrollPane fx:id="scrollPane"
+                        AnchorPane.topAnchor="65"
+                        AnchorPane.leftAnchor="10"
+                        hbarPolicy="NEVER"
+                        maxHeight="500"
+                        prefWidth="425"
+                        prefHeight="325"
+                        vbarPolicy="AS_NEEDED"
+                        vmax="300">
 
-                                <Label text="CREATE CHARACTER"
-                                       GridPane.columnIndex="0"
-                                       GridPane.rowIndex="1"
-                                       alignment="BASELINE_CENTER"/>
+                <FlowPane fx:id="listOfCharacterList"
+                          columnHalignment="CENTER"
+                          hgap="4"
+                          vgap="4"/>
+            </ScrollPane>
 
-                                <Button fx:id="createBtn"
-                                        text="Create"
-                                        GridPane.columnIndex="1"
-                                        GridPane.rowIndex="1"
-                                        onAction="#creatNewCharacterBtn"
-                                        alignment="BASELINE_CENTER"/>
+        </AnchorPane>
 
-                                <Button fx:id="returnBtn"
-                                        text="Cancel"
-                                        onAction="#returnBtn"
-                                        GridPane.columnIndex="2"
-                                        GridPane.rowIndex="1"
-                                        alignment="BASELINE_CENTER"/>
-                            </children>
-                            <padding>
-                                <Insets bottom="5.0"/>
-                            </padding>
-                        </GridPane>
+        <VBox fx:id="character_Box"
+              visible="false"
+              GridPane.columnIndex="0"
+              GridPane.rowIndex="2">
 
-                        <ScrollPane fx:id="scrollPane"
-                                    hbarPolicy="NEVER"
-                                    maxHeight="500"
-                                    prefWidth="500"
-                                    prefHeight="350"
-                                    vbarPolicy="AS_NEEDED"
-                                    vmax="300"
-                                    GridPane.columnIndex="1"
-                                    GridPane.rowIndex="3">
-                            <content>
-                                <FlowPane fx:id="listOfCharacterList"
-                                          columnHalignment="CENTER"
-                                          hgap="4"
-                                          vgap="4"/>
-                            </content>
-                            <padding>
-                                <Insets bottom="5.0"
-                                        left="3.0"
-                                        right="3.0"
-                                        top="5.0"/>
-                            </padding>
-                        </ScrollPane>
+            <Label fx:id="errorsLabel" styleClass="errorMsg"/>
 
-                        <VBox fx:id="character_Box"
-                              maxWidth="200"
-                              prefWidth="200"
-                              visible="false"
-                              GridPane.columnIndex="1"
-                              GridPane.rowIndex="3">
-                            <children>
-                                <Label fx:id="errorsLabel" styleClass="errorMsg">
-                                    <VBox.margin>
-                                        <Insets bottom="5.0"/>
-                                    </VBox.margin>
-                                </Label>
+            <GridPane styleClass="grid-pane, grid-pane-home">
 
-                                <Label text="Name: *"/>
+                <Label text="Name: *"
+                       GridPane.rowIndex="0"
+                       GridPane.columnIndex="0"/>
 
-                                <TextField fx:id="character_Name_Field"
-                                           prefWidth="200">
-                                    <VBox.margin>
-                                        <Insets bottom="5.0"/>
-                                    </VBox.margin>
-                                </TextField>
+                <TextField fx:id="character_Name_Field"
+                           promptText="Enter character name"
+                           GridPane.rowIndex="0"
+                           GridPane.columnIndex="1"
+                           GridPane.halignment="RIGHT"/>
 
-                                <Label text="Class: *"/>
+                <Label text="Class: *"
+                       GridPane.rowIndex="1"
+                       GridPane.columnIndex="0"/>
 
-                                <ComboBox fx:id="class_Box"
-                                          prefWidth="200">
-                                    <VBox.margin>
-                                        <Insets bottom="5.0"/>
-                                    </VBox.margin>
-                                </ComboBox>
+                <ComboBox fx:id="class_Box"
+                          GridPane.rowIndex="1"
+                          GridPane.columnIndex="1"
+                          GridPane.halignment="RIGHT"/>
 
-                                <Label text="Level: *"/>
+                <Label text="Level: *"
+                       GridPane.rowIndex="2"
+                       GridPane.columnIndex="0"/>
 
-                                <TextField fx:id="level_Field" prefWidth="400">
-                                    <VBox.margin>
-                                        <Insets bottom="5.0"/>
-                                    </VBox.margin>
-                                </TextField>
+                <TextField fx:id="level_Field"
+                           GridPane.rowIndex="2"
+                           GridPane.columnIndex="1"
+                           GridPane.halignment="RIGHT"/>
 
-                                <Label text="Race: *"/>
+                <Label text="Race: *"
+                       GridPane.rowIndex="3"
+                       GridPane.columnIndex="0"/>
 
-                                <ComboBox fx:id="character_Race_DropdownBox"
-                                          prefWidth="200">
-                                    <VBox.margin>
-                                        <Insets bottom="5.0"/>
-                                    </VBox.margin>
-                                </ComboBox>
+                <ComboBox fx:id="character_Race_DropdownBox"
+                          GridPane.rowIndex="3"
+                          GridPane.columnIndex="1"
+                          GridPane.halignment="RIGHT"/>
 
-                                <HBox prefWidth="400">
-                                    <children>
-                                        <Button styleClass="createCharacterBtn"
-                                                prefWidth="150"
-                                                text="Create"
-                                                onAction="#createCharacterBtn">
-                                                textAlignment="CENTER"
-                                            <HBox.margin>
-                                                <Insets right="5.0"/>
-                                            </HBox.margin>
-                                        </Button>
+                <Button text="createBtn"
+                        GridPane.rowIndex="4"
+                        GridPane.columnIndex="0"
+                        onAction="#creatNewCharacterBtn"/>
 
-                                        <Region prefWidth="100"/>
+                <Button fx:id="cancelBtn"
+                        text="cancel"
+                        GridPane.rowIndex="4"
+                        GridPane.columnIndex="1"
+                        GridPane.halignment="RIGHT"/>
 
-                                        <Button fx:id="cancelBtn"
-                                                prefWidth="150"
-                                                textAlignment="CENTER"
-                                                text="Cancel"/>
-                                    </children>
-                                    <VBox.margin>
-                                        <Insets top="5.0"/>
-                                    </VBox.margin>
-                                </HBox>
-                            </children>
-                        </VBox>
-                    </children>
-                </GridPane>
-            </children>
-        </GridPane>
-    </children>
+            </GridPane>
+        </VBox>
+    </GridPane>
 </AnchorPane>

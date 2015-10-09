@@ -32,7 +32,6 @@ import java.util.Random;
 
 public class CharacterController extends MainController implements Initializable {
 
-    //region UI controls
     @FXML
     private Label errorsLabel;
     @FXML
@@ -61,7 +60,6 @@ public class CharacterController extends MainController implements Initializable
 
     @FXML
     private Button createBtn;
-    //endregion
 
     private ObservableList<Character> cCharacterList;
     private CharacterService cCharacterService;
