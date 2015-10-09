@@ -2,7 +2,6 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.geometry.Insets?>
 
 <GridPane styleClass="container" fx:id="registerContainer" stylesheets="/css/style.css"
           xmlns="http://javafx.com/javafx/8"
@@ -16,30 +15,30 @@
         <GridPane styleClass="grid-pane">
 
             <Label text="Username: * "
-                   GridPane.rowIndex="2"
+                   GridPane.rowIndex="0"
                    GridPane.columnIndex="0"/>
 
             <TextField fx:id="userName_Field"
                        promptText="Fill in your Username"
-                       GridPane.rowIndex="2"
+                       GridPane.rowIndex="0"
                        GridPane.columnIndex="1"/>
 
             <Label text="First name: * "
-                   GridPane.rowIndex="0"
+                   GridPane.rowIndex="1"
                    GridPane.columnIndex="0"/>
 
             <TextField fx:id="first_Name_Field"
                        promptText="Fill in your First Name"
-                       GridPane.rowIndex="0"
+                       GridPane.rowIndex="1"
                        GridPane.columnIndex="1"/>
 
             <Label text="Last name: * "
-                   GridPane.rowIndex="1"
+                   GridPane.rowIndex="2"
                    GridPane.columnIndex="0"/>
 
             <TextField fx:id="last_Name_Field"
                        promptText="Fill in your Last Name"
-                       GridPane.rowIndex="1"
+                       GridPane.rowIndex="2"
                        GridPane.columnIndex="1"/>
 
             <Label text="Password: * "
@@ -76,5 +75,4 @@
 
         </GridPane>
     </VBox>
-
 </GridPane>

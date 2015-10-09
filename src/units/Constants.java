@@ -12,7 +12,7 @@ public class Constants {
     private final static String FXML_PATH = "/fxml";
     public final static String FXML_LOGINPATH = String.format("%s/loginFrame.fxml", FXML_PATH);
     public final static String SERVER_FXML_PATH = String.format("%s/serverFrame.fxml", FXML_PATH);
-    public final static String PROFILE_FXML_PATH = String.format("%s/userFrame.fxml", FXML_PATH);
+    public final static String PROFILE_FXML_PATH = String.format("%s/profileFrame.fxml", FXML_PATH);
     public final static String CHARACTER_FXML_PATH = String.format("%s/characterFrame.fxml", FXML_PATH);
     public final static String FXML_HOMEPATH = String.format("%s/startFrame.fxml", FXML_PATH);
     public final static String FXML_REGISTERPATH = String.format("%s/registerFrame.fxml", FXML_PATH);
