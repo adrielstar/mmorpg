@@ -4,7 +4,6 @@ package controller;
  * Created by Adriel on 10/8/2015.
  */
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -67,7 +66,7 @@ public class RegisterController extends MainController implements Initializable 
             registerUser(node, userName, firstName, lastName, password, iban);
         }
 
-        messageLabel.setText(!isValidated ? "All fields are required!" : userNamesExists ? String.format("Sorry, but %s already exist. Try another!", userName) : Constants.EMPTY_STRING);
+        messageLabel.setText(!isValidated ? "All fields are required!" : userNamesExists ? String.format("Sorry, but %s already exist. Try another!", userName) : Constants.No_Value_STRING);
     }
 
     public void handleBackBtn_Click(ActionEvent actionEvent) {
@@ -85,7 +84,7 @@ public class RegisterController extends MainController implements Initializable 
 
             boolean isAdded = addUser(newUser);
             if (isAdded) {
-                showScene(node, Constants.HOME_FXML_PATH, Constants.HOME_SCENE_HEADER, getUser());
+                showScene(node, Constants.FXML_HOMEPATH, Constants.HOMEHEADER, getUser());
             }
         }
     }

@@ -79,7 +79,7 @@ public class ProfileController extends MainController {
 
     public void handleBackBtn_Click(ActionEvent actionEvent) {
         Node node = (Node) actionEvent.getSource();
-        showScene(node, Constants.HOME_FXML_PATH, Constants.HOME_SCENE_HEADER, getUser());
+        showScene(node, Constants.FXML_HOMEPATH, Constants.HOMEHEADER, getUser());
     }
 
     public void addMoneyBtn_Click(ActionEvent actionEvent) {
@@ -100,7 +100,7 @@ public class ProfileController extends MainController {
             }
         }
 
-        messageLabel.setText(warning != null ? warning : Constants.EMPTY_STRING);
+        messageLabel.setText(warning != null ? warning : Constants.No_Value_STRING);
         balanceField.clear();
     }
 
@@ -143,7 +143,7 @@ public class ProfileController extends MainController {
             }
         }
 
-        messageLabel.setText(getUser().getBalance() < amount ? "Please add money to your account!" : Constants.EMPTY_STRING);
+        messageLabel.setText(getUser().getBalance() < amount ? "Please add money to your account!" : Constants.No_Value_STRING);
     }
 
     public boolean updateUser(User user) {
@@ -167,7 +167,7 @@ public class ProfileController extends MainController {
             }
         }
 
-        messageLabel.setText(getUser().getBalance() < balance ? "Please add money to your account!" : Constants.EMPTY_STRING);
+        messageLabel.setText(getUser().getBalance() < balance ? "Please add money to your account!" : Constants.No_Value_STRING);
     }
 
     public void addSubscriptionBtn_Click() {

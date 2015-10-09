@@ -1,8 +1,5 @@
 package controller;
 
-/**
- * Created by Adriel on 10/8/2015.
- */
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -20,19 +17,20 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
+/**
+ * Created by Adriel on 10/8/2015.
+ */
+
+
 public class LoginController extends MainController implements Initializable {
 
-    //region  UI controls
+    @FXML
+    public Label errorsLabel;
 
     @FXML
-    public Label messageLabel;
-
+    public TextField usernameField;
     @FXML
-    public TextField usernameTextField;
-    @FXML
-    public PasswordField passwordTextField;
-
-    //endregion
+    public PasswordField passwordField;
 
     public LoginController() {
 
@@ -42,72 +40,74 @@ public class LoginController extends MainController implements Initializable {
             ObservableList<User> list = FXCollections.observableList(users);
             setUserList(list);
         } else {
-            System.out.println("Database table doesn't have any user data");
+            System.out.println("Table user is empty!");
         }
 
         createServers();
     }
 
-    //region Methods
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        usernameTextField.setText("rr");
-        passwordTextField.setText("rr");
+        usernameField.setText("adriel");
+        passwordField.setText("password");
     }
 
-    public void handleSignInBtn_Click(ActionEvent actionEvent) {
+    public void signBtn(ActionEvent actionEvent) {
 
-        String userNameInput = usernameTextField.getText();
-        String userPasswordInput = passwordTextField.getText();
+        String userNameInput = usernameField.getText();
+        String userPasswordInput = passwordField.getText();
 
-        boolean isSignedIn = signIn(userNameInput, userPasswordInput);
+        boolean userSingIn = userSignIn(userNameInput, userPasswordInput);
 
-        if (isSignedIn) {
+        if (userSingIn) {
             Node node = (Node) actionEvent.getSource();
-            showScene(node, Constants.HOME_FXML_PATH, Constants.HOME_SCENE_HEADER, getUser());
+            showScene(node, Constants.FXML_HOMEPATH, Constants.HOMEHEADER, getUser());
         }
     }
 
-    public void handleRegisterBtn_Click(ActionEvent actionEvent) {
+    public void registerBtn(ActionEvent actionEvent) {
         Node node = (Node) actionEvent.getSource();
-        showScene(node, Constants.REGISTER_FXML_PATH, Constants.REGISTRATION_SCENE_HEADER, getUserList());
+        showScene(node, Constants.FXML_REGISTERPATH, Constants.REGISTERHEADER, getUserList());
     }
 
-    private boolean signIn(String userName, String userPassword) {
+    private boolean userSignIn(String userName, String userPassword) {
 
-        boolean isSignedIn = false;
+        boolean userSignedIn = false;
         User user = findUser(userName, userPassword);
 
         if (user != null) {
-            isSignedIn = true;
+            userSignedIn = true;
             setUser(user);
         }
 
-        messageLabel.setText(user == null ? "Invalid username or password!" : Constants.EMPTY_STRING);
+        errorsLabel.setText(user == null ? "Username or Password is not Correct!" : Constants.No_Value_STRING);
 
-        return isSignedIn;
+        return userSignedIn;
     }
 
     private void createServers() {
 
         List<Server> serverList = getServerService().ServerList();
-        int serversAmount = serverList == null ? 0 : serverList.size();
+        int totalServer = serverList == null ? 0 : serverList.size();
 
-        if (serversAmount <= 0) {
+        if (totalServer <= 0) {
 
-            Server server1 = new Server("199.00.22.1", "Server 1", "Europe", 100, 50);
-            Server server2 = new Server("143.12.14.2", "Server 2", "Africa", 100, 100);
-            Server server3 = new Server("321.64.12.1", "Server 3", "America", 100, 83);
+            Server server1 = new Server("189.30.62.1", "Server 1", "Japan", 100, 66);
+            Server server2 = new Server("195.22.55.2", "Server 2", "China", 100, 100);
+            Server server3 = new Server("192.98.48.3", "Server 3", "Usa", 100, 90);
+            Server server4 = new Server("192.98.48.3", "Server 3", "Europe", 100, 25);
 
-            boolean isServerAdded;
+            boolean addServer;
 
-            isServerAdded = getServerService().addServer(server1);
-            System.out.printf("Server 1 created: %s\n", isServerAdded);
-            isServerAdded = getServerService().addServer(server2);
-            System.out.printf("Server 2 created: %s\n", isServerAdded);
-            isServerAdded = getServerService().addServer(server3);
-            System.out.printf("Server 3 created: %s\n", isServerAdded);
+            addServer = getServerService().addServer(server1);
+            System.out.printf("Server 1 created: %s\n", addServer);
+            addServer = getServerService().addServer(server2);
+            System.out.printf("Server 2 created: %s\n", addServer);
+            addServer = getServerService().addServer(server3);
+            System.out.printf("Server 3 created: %s\n", addServer);
+            addServer = getServerService().addServer(server4);
+            System.out.printf("Server 4 created: %s\n", addServer);
         }
     }
 
@@ -122,16 +122,14 @@ public class LoginController extends MainController implements Initializable {
             String userName = user.getUsername();
             String userPassword = user.getPassword();
 
-            boolean isUserNameMatched = userNameInput.equals(userName);
-            boolean isUserPasswordMatched = userPasswordInput.equals(userPassword);
+            boolean userNameMatched = userNameInput.equals(userName);
+            boolean userPasswordMatched = userPasswordInput.equals(userPassword);
 
-            if (isUserNameMatched && isUserPasswordMatched) {
+            if (userNameMatched && userPasswordMatched) {
                 return user;
             }
         }
 
         return null;
     }
-
-    //endregion
 }

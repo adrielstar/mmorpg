@@ -1,5 +1,5 @@
 * {
-    -fx-font-family: 'OpenSans';
+    -fx-font-family: '../fonts/OpenSans-Bold.ttf';
     -fx-alignment: center-left;
     -fx-text-fill: #fff;
 }
@@ -12,11 +12,11 @@
 }
 
 #containerLogin {
-    -fx-padding: 0 0 0 150px;
+    -fx-padding: 0 0 150 310px;
 }
 
 #containerRegister {
-    -fx-padding: 0 0 0 75px;
+    -fx-padding: 0 0 0 220px;
 }
 
 #containerHomepage {
@@ -55,14 +55,14 @@
     -fx-font-size: 18;
 }
 
-.validationLabel {
+.errorMsg {
     -fx-font-size: 14px;
-    -fx-text-fill: #ff0;
-    -fx-padding: 5px;
+    -fx-text-fill: red;
+    -fx-padding: 2px;
 }
 
 #title {
-    -fx-font-size: 48px;
+    -fx-font-size: 35px;
 }
 
 .grid-pane {

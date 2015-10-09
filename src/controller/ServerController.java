@@ -22,6 +22,6 @@ public class ServerController extends MainController {
         System.out.printf("Server is updated: %s", isUpdated);
 
         Node node = (Node) actionEvent.getSource();
-        showScene(node, Constants.HOME_FXML_PATH, Constants.HOME_SCENE_HEADER, user);
+        showScene(node, Constants.FXML_HOMEPATH, Constants.HOMEHEADER, user);
     }
 }

@@ -164,7 +164,7 @@ public class CharacterController extends MainController implements Initializable
             }
         }
 
-        messageLabel.setText(slotsAvailable < slotsUsed ? "All empty slots are used!" : !isValidated ? "All fields are required!" : characterNameExists ? String.format("Sorry, but %s already exist. Try another!", characterName) : Constants.EMPTY_STRING);
+        messageLabel.setText(slotsAvailable < slotsUsed ? "All empty slots are used!" : !isValidated ? "All fields are required!" : characterNameExists ? String.format("Sorry, but %s already exist. Try another!", characterName) : Constants.No_Value_STRING);
     }
 
     private void createCharacter(Character newCharacter) {
@@ -204,15 +204,15 @@ public class CharacterController extends MainController implements Initializable
         String level = String.valueOf(1 + random.nextInt(99));
         levelField.setText(level);
 
-        messageLabel.setText(Constants.EMPTY_STRING);
-        characterNameField.setText(Constants.EMPTY_STRING);
+        messageLabel.setText(Constants.No_Value_STRING);
+        characterNameField.setText(Constants.No_Value_STRING);
         classBox.getSelectionModel().clearSelection();
         characterRaceBox.getSelectionModel().clearSelection();
     }
 
     public void handleBackBtn_Click(ActionEvent actionEvent) {
         Node node = (Node) actionEvent.getSource();
-        showScene(node, Constants.HOME_FXML_PATH, Constants.HOME_SCENE_HEADER, getUser());
+        showScene(node, Constants.FXML_HOMEPATH, Constants.HOMEHEADER, getUser());
     }
 
     private void showWindow(boolean showCharacterList, boolean showAddCharacterPanel) {
