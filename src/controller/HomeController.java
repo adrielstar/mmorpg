@@ -1,67 +1,64 @@
 package controller;
 
-/**
- * Created by Adriel on 10/8/2015.
- */
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
+import javafx.scene.Node;
 import javafx.scene.layout.VBox;
 import models.Server;
 import units.Constants;
-
+import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
 import java.util.List;
+
+/**
+ * Created by Adriel on 10/8/2015.
+ */
+
 
 public class HomeController extends MainController {
 
-    //region UI control
+    @FXML
+    public Label errorsLabel;
 
     @FXML
-    public Label messageLabel;
+    public VBox serverBoxs;
 
-    @FXML
-    public VBox serverBox;
 
-    //endregion
-
-    //region Methods
 
     @FXML
     public void initialize() {
 
         List<Server> servers = getServerService().ServerList();
-        servers.forEach(this::createServers);
+        servers.forEach(this::create_Servers);
     }
 
-    private void createServers(Server server) {
+    private void create_Servers(Server server) {
 
-        String serverName = server.getServerName();
-        String serverAddress = server.getServerAddress();
-        int serverConnectedUsers = server.getServerConnectedUsers();
-        int serverMaxUsers = server.getServerMaxUsers();
-        boolean isServerAvailable = serverConnectedUsers < serverMaxUsers;
-        String imagePath = isServerAvailable ? Constants.SERVER_AVAILABLE_IMAGE_PATH : Constants.SERVER_FULL_IMAGE_PATH;
+        String server_Name = server.getServerName();
+        String server_Location = server.getServerLocation();
+        int online_Users = server.getServerJoinUsers();
+        int totalUsers = server.getServerTotalUsers();
+        boolean onlineServer = online_Users < totalUsers;
+        String imgPath = onlineServer ? Constants.SERVER_ONLINE_IMGPATH : Constants.SERVER_OFFLINE_IMGPATH;
 
-        Button serverButton = createServerButton(serverName, serverAddress, serverConnectedUsers, serverMaxUsers, imagePath);
-        serverButton.setDisable(!isServerAvailable);
+        Button serverBtn = create_ServerBtn(server_Name, server_Location, online_Users, totalUsers, imgPath);
+        serverBtn.setDisable(!onlineServer);
 
-        serverButton.setOnAction(actionEvent -> {
+        serverBtn.setOnAction(actionEvent -> {
 
-            boolean isAdded = connectToServer(server);
+            boolean join = joinServer(server);
 
-            if (isAdded) {
+            if (join) {
                 Node node = (Node) actionEvent.getSource();
-                showScene(node, Constants.SERVER_FXML_PATH, serverName, getServer());
+                showScenery(node, Constants.FXML_SERVERPATH, server_Name, getServer());
             }
         });
 
-        serverBox.getChildren().add(0, serverButton);
+        serverBoxs.getChildren().add(0, serverBtn);
     }
 
-    private boolean connectToServer(Server server) {
+    private boolean joinServer(Server server) {
 
         int charactersSize = getUser().getCharacters().size();
 
@@ -69,51 +66,50 @@ public class HomeController extends MainController {
             setServer(server);
 
             getServer().setUsers(getUser());
-            int connectedUsers = getServer().getServerConnectedUsers() + 1;
-            getServer().setServerConnectedUsers(connectedUsers);
+            int connectedUsers = getServer().getServerJoinUsers() + 1;
+            getServer().setServerJoinUsers(connectedUsers);
 
             return getServerService().updateServer(getServer());
         }
 
-        messageLabel.setText("No characters are created");
+        errorsLabel.setText("You need to create Characters first!!");
 
         return false;
     }
 
-    private Button createServerButton(String serverName, String serverAddress, Integer serverConnectedUsers, Integer serverMaxUsers, String imagePath) {
+    private Button create_ServerBtn(String server_Name, String server_Location, Integer onlineUsers, Integer totalUsers, String imgPath) {
         Button serverBtn = new Button();
 
         serverBtn.setPrefSize(Constants.SERVER_BUTTON_WIDTH, Constants.SERVER_BUTTON_HEIGHT);
-        serverBtn.setText(String.format("%s (%s) Users: %s/%s", serverName, serverAddress, serverConnectedUsers, serverMaxUsers));
+        serverBtn.setText(String.format("%s [%s] Users: %s/%s", server_Name, server_Location, onlineUsers, totalUsers));
 
-        ImageView avatarImgBtnLayout = createImageBtnLayout(imagePath, Constants.SERVER_IMAGE_WIDTH, Constants.SERVER_IMAGE_HEIGHT);
+        ImageView avatarImgBtnLayout = createImgeBtn(imgPath, Constants.SERVER_IMAGE_WIDTH, Constants.SERVER_IMAGE_HEIGHT);
         serverBtn.setGraphic(avatarImgBtnLayout);
 
         return serverBtn;
     }
 
     public void load() {
-        String userFirstName = getUser().getFirstName();
-        String userLastName = getUser().getLastName();
+        String user_FirstName = getUser().getFirstName();
+        String user_LastName = getUser().getLastName();
 
-        String header = String.format("Welcome %s %s!", userFirstName, userLastName);
+        String header = String.format("Hi, %s %s!", user_FirstName, user_LastName);
         setTitle(header);
     }
 
-    public void handleLogoutBtn_Click(ActionEvent actionEvent) {
+    public void logoutBtn(ActionEvent actionEvent) {
         Node node = (Node) actionEvent.getSource();
-        showScene(node, Constants.FXML_LOGINPATH, Constants.LOGINHEADER, null);
+        showScenery(node, Constants.FXML_LOGINPATH, Constants.LOGINHEADER, null);
     }
 
-    public void handleProfileBtn_Click(ActionEvent actionEvent) {
+    public void profileBtn(ActionEvent actionEvent) {
         Node node = (Node) actionEvent.getSource();
-        showScene(node, Constants.PROFILE_FXML_PATH, Constants.PROFILE_SCENE_HEADER, getUser());
+        showScenery(node, Constants.FXML_PROFILEPATH, Constants.PROFILEHEADER, getUser());
     }
 
-    public void handleCharacterBtn_Click(ActionEvent actionEvent) {
+    public void characterBtn(ActionEvent actionEvent) {
         Node node = (Node) actionEvent.getSource();
-        showScene(node, Constants.CHARACTER_FXML_PATH, Constants.CHARACTER_SCENE_HEADER, getUser());
+        showScenery(node, Constants.FXML_CHARACTERPATH, Constants.CHARACTERHEADER, getUser());
     }
 
-    //endregion
 }

@@ -17,19 +17,19 @@ public class Server {
 
     @Id
     @Column(name = "address")
-    private String mServerAddress;
+    private String sServerAddress;
 
     @Column(name = "name")
-    private String mServerName;
+    private String sServerName;
 
     @Column(name = "location")
-    private String mServerLocation;
+    private String sServerLocation;
 
     @Column(name = "max_users")
-    private Integer mServerMaxUsers;
+    private Integer sServerMaxUsers;
 
     @Column(name = "connected_users")
-    private Integer mServerConnectedUsers;
+    private Integer sServerConnectedUsers;
 
     @ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     @JoinTable(name = "stores",
@@ -44,35 +44,35 @@ public class Server {
     public Server(String serverAddress, String serverName, String serverLocation,
                   Integer serverMaxUsers, Integer serverConnectedUsers) {
         super();
-        mServerAddress = serverAddress;
-        mServerName = serverName;
-        mServerLocation = serverLocation;
-        mServerMaxUsers = serverMaxUsers;
-        mServerConnectedUsers = serverConnectedUsers;
+        sServerAddress = serverAddress;
+        sServerName = serverName;
+        sServerLocation = serverLocation;
+        sServerMaxUsers = serverMaxUsers;
+        sServerConnectedUsers = serverConnectedUsers;
     }
 
     public String getServerAddress() {
-        return mServerAddress;
+        return sServerAddress;
     }
 
     public String getServerName() {
-        return mServerName;
+        return sServerName;
     }
 
     public String getServerLocation() {
-        return mServerLocation;
+        return sServerLocation;
     }
 
-    public Integer getServerMaxUsers() {
-        return mServerMaxUsers;
+    public Integer getServerTotalUsers() {
+        return sServerMaxUsers;
     }
 
-    public Integer getServerConnectedUsers() {
-        return mServerConnectedUsers;
+    public Integer getServerJoinUsers() {
+        return sServerConnectedUsers;
     }
 
-    public void setServerConnectedUsers(int serverConnectedUsers) {
-        mServerConnectedUsers = serverConnectedUsers;
+    public void setServerJoinUsers(int serverConnectedUsers) {
+        sServerConnectedUsers = serverConnectedUsers;
     }
 
     public Set<User> getUsers() {

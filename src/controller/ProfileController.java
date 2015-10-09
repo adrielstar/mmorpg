@@ -1,8 +1,5 @@
 package controller;
 
-/**
- * Created by Adriel on 10/8/2015.
- */
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -10,7 +7,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
 import models.User;
 import units.Constants;
 import units.Helpers;
@@ -18,25 +14,33 @@ import units.Helpers;
 import java.sql.Timestamp;
 import java.util.Date;
 
+
+
+
+/**
+ * Created by Adriel on 10/8/2015.
+ */
+
+
 public class ProfileController extends MainController {
 
     //region UI controls
 
     @FXML
-    public Label messageLabel;
+    public Label errorsLabel;
     @FXML
-    public Button backButton;
+    public Button cancelBtn;
 
     @FXML
-    public Label usernameLabel;
+    public Label username_Label;
     @FXML
-    public Label userBalanceLabel;
+    public Label balance_Label;
     @FXML
-    public Label userIbanLabel;
+    public Label iban_Label;
     @FXML
-    public Label userCharacterSlotsLabel;
+    public Label characterSlots_Label;
     @FXML
-    public Label userMonthsPayedLabel;
+    public Label monthsPayed_Label;
 
     @FXML
     public TextField balanceField;
@@ -45,15 +49,11 @@ public class ProfileController extends MainController {
     @FXML
     public ChoiceBox subscriptionBox;
 
-    //endregion
 
-    //region Methods
 
     @FXML
     public void initialize() {
 
-        ImageView backImgBtnLayout = createImageBtnLayout(Constants.BACK_IMAGE_PATH, Constants.BACK_IMAGE_WIDTH, Constants.BACK_IMAGE_HEIGHT);
-        backButton.setGraphic(backImgBtnLayout);
     }
 
     @Override
@@ -67,19 +67,20 @@ public class ProfileController extends MainController {
         String userCharacterSlots = String.valueOf(getUser().getCharacterSlots());
         String monthsPayed = String.valueOf(getUser().getMonthsPayed());
 
-        usernameLabel.setText(username);
-        userBalanceLabel.setText(balance);
-        userIbanLabel.setText(iban);
-        userCharacterSlotsLabel.setText(userCharacterSlots);
-        userMonthsPayedLabel.setText(monthsPayed);
+        username_Label.setText(username);
+        balance_Label.setText(balance);
+        iban_Label.setText(iban);
+        characterSlots_Label.setText(userCharacterSlots);
+        monthsPayed_Label.setText(monthsPayed);
 
-        String header = String.format("Welcome %s %s!", userFirstName, userLastName);
+        String header = String.format("Hi, %s %s!", userFirstName, userLastName);
         setTitle(header);
     }
 
-    public void handleBackBtn_Click(ActionEvent actionEvent) {
+
+    public void cancelBtn(ActionEvent actionEvent) {
         Node node = (Node) actionEvent.getSource();
-        showScene(node, Constants.FXML_HOMEPATH, Constants.HOMEHEADER, getUser());
+        showScenery(node, Constants.FXML_HOMEPATH, Constants.HOMEHEADER, getUser());
     }
 
     public void addMoneyBtn_Click(ActionEvent actionEvent) {
@@ -96,11 +97,11 @@ public class ProfileController extends MainController {
 
             boolean isUpdated = updateUser(getUser());
             if (isUpdated) {
-                userBalanceLabel.setText(String.valueOf(newBalance));
+                balance_Label.setText(String.valueOf(newBalance));
             }
         }
 
-        messageLabel.setText(warning != null ? warning : Constants.No_Value_STRING);
+        errorsLabel.setText(warning != null ? warning : Constants.No_Value_STRING);
         balanceField.clear();
     }
 
@@ -138,12 +139,12 @@ public class ProfileController extends MainController {
             boolean isUpdated = updateUser(getUser());
 
             if (isUpdated) {
-                userBalanceLabel.setText(String.valueOf(newBalance));
-                userCharacterSlotsLabel.setText(String.valueOf(newCharacterSlots));
+                balance_Label.setText(String.valueOf(newBalance));
+                characterSlots_Label.setText(String.valueOf(newCharacterSlots));
             }
         }
 
-        messageLabel.setText(getUser().getBalance() < amount ? "Please add money to your account!" : Constants.No_Value_STRING);
+        errorsLabel.setText(getUser().getBalance() < amount ? "You don't have money on your account" : Constants.No_Value_STRING);
     }
 
     public boolean updateUser(User user) {
@@ -162,15 +163,15 @@ public class ProfileController extends MainController {
 
             boolean isUpdated = updateUser(getUser());
             if (isUpdated) {
-                userMonthsPayedLabel.setText(String.valueOf(monthsPayed));
-                userBalanceLabel.setText(String.valueOf(newBalance));
+                monthsPayed_Label.setText(String.valueOf(monthsPayed));
+                balance_Label.setText(String.valueOf(newBalance));
             }
         }
 
-        messageLabel.setText(getUser().getBalance() < balance ? "Please add money to your account!" : Constants.No_Value_STRING);
+        errorsLabel.setText(getUser().getBalance() < balance ? "You don't have money on your account" : Constants.No_Value_STRING);
     }
 
-    public void addSubscriptionBtn_Click() {
+    public void subscriptionBtn() {
         String selectedItem = (String) subscriptionBox.getSelectionModel().getSelectedItem();
 
         int months;

@@ -61,7 +61,7 @@ public class RegisterController extends MainController {
 
     public void cancelBtn(ActionEvent actionEvent) {
         Node node = (Node) actionEvent.getSource();
-        showScene(node, Constants.FXML_LOGINPATH, Constants.LOGINHEADER, null);
+        showScenery(node, Constants.FXML_LOGINPATH, Constants.LOGINHEADER, null);
     }
 
     private void userRegister(Node node, String userName, String firstName, String lastName, String password, String iban) {
@@ -74,7 +74,7 @@ public class RegisterController extends MainController {
 
             boolean isAdded = addUsers(newUsers);
             if (isAdded) {
-                showScene(node, Constants.FXML_HOMEPATH, Constants.HOMEHEADER, getUser());
+                showScenery(node, Constants.FXML_HOMEPATH, Constants.HOMEHEADER, getUser());
             }
         }
     }

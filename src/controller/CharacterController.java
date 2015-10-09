@@ -1,182 +1,181 @@
 package controller;
 
-/**
- * Created by Adriel on 10/8/2015.
- */
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.*;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.TextAlignment;
 import models.Character;
 import service.CharacterService;
 import service.CharacterServiceImpl;
 import units.Constants;
+import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
+import javafx.scene.text.TextAlignment;
+
 
 import java.net.URL;
-import java.util.List;
-import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.Set;
+import java.util.List;
+import java.util.Random;
+
+
+
+/**
+ * Created by Adriel on 10/8/2015.
+ */
 
 public class CharacterController extends MainController implements Initializable {
 
     //region UI controls
     @FXML
-    private Label messageLabel;
+    private Label errorsLabel;
     @FXML
-    private Button backBtn;
+    private Button returnBtn;
     @FXML
-    private Label slotLabel;
+    private Label slot_Label;
     @FXML
-    private FlowPane characterList;
+    private FlowPane listOfCharacterList;
     @FXML
-    private GridPane topPanel;
+    private GridPane panel;
     @FXML
     private ScrollPane scrollPane;
     @FXML
-    private VBox addCharacterBox;
+    private VBox character_Box;
 
     @FXML
     private Button cancelBtn;
     @FXML
-    private ComboBox classBox;
+    private ComboBox class_Box;
     @FXML
-    private ComboBox characterRaceBox;
+    private ComboBox character_Race_DropdownBox;
     @FXML
-    private TextField levelField;
+    private TextField level_Field;
     @FXML
-    private TextField characterNameField;
+    private TextField character_Name_Field;
 
     @FXML
-    private Button addButton;
+    private Button createBtn;
     //endregion
 
-    private ObservableList<Character> mCharacterList;
-    private CharacterService mCharacterService;
+    private ObservableList<Character> cCharacterList;
+    private CharacterService cCharacterService;
 
-    public CharacterService getCharacterService() {
-        return mCharacterService;
+    public CharacterService getCharactersService() {
+        return cCharacterService;
     }
 
     public void setCharacterService(CharacterService characterService) {
-        mCharacterService = characterService;
+        cCharacterService = characterService;
     }
 
     public ObservableList<Character> getCharacterList() {
 
-        return mCharacterList;
+        return cCharacterList;
     }
 
     public void setCharacterList(ObservableList<Character> mCharacterList) {
-        this.mCharacterList = mCharacterList;
+        this.cCharacterList = mCharacterList;
     }
 
     public CharacterController() {
 
         setCharacterService(new CharacterServiceImpl());
 
-        List<Character> characters = getCharacterService().CharacterList();
+        List<Character> characters = getCharactersService().CharacterList();
 
         if (characters != null && !characters.isEmpty()) {
             ObservableList<Character> list = FXCollections.observableList(characters);
             setCharacterList(list);
         } else {
-            System.out.println("Database table doesn't have any character data");
+            System.out.println("table characters is empty");
         }
     }
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
+        public void initialize(URL location, ResourceBundle resources) {
 
-        ImageView backImgBtnLayout = createImageBtnLayout(Constants.BACK_IMAGE_PATH, Constants.BACK_IMAGE_WIDTH, Constants.BACK_IMAGE_HEIGHT);
-        backBtn.setGraphic(backImgBtnLayout);
-        ImageView addImgBtnLayout = createImageBtnLayout(Constants.ADD_BUTTON_IMAGE_PATH, Constants.ADD_IMAGE_WIDTH, Constants.ADD_IMAGE_HEIGHT);
-        addButton.setGraphic(addImgBtnLayout);
+            cancelBtn.setOnAction(event ->
+            {
+                viewWindow(true, false);
+                setTitle(Constants.CHARACTERHEADER.toUpperCase());
+            });
 
-        cancelBtn.setOnAction(event ->
-        {
-            showWindow(true, false);
-            setTitle(Constants.CHARACTER_SCENE_HEADER.toUpperCase());
-        });
+        level_Field.setEditable(false);
 
-        levelField.setEditable(false);
-
-        classBox.setItems(FXCollections.observableArrayList("Guardin", "Assassin", "Archmage", "Necromancer", "Prophet", "Shaman", "Druid", "Ranger"));
-        characterRaceBox.setItems(FXCollections.observableArrayList("Human", "Gnome", "Dwarf", "Elf", "Eladin", "Tiefling", "Deva", "Goliath"));
+        class_Box.setItems(FXCollections.observableArrayList("Assault", "Sniper", "Recon", "Support", "Engineer", "Medic", "Comander", "Ranger"));
+        character_Race_DropdownBox.setItems(FXCollections.observableArrayList("America", "Canada", "Holland", "France", "Pakistan", "Brazil", "Venezuela", "Japan"));
     }
 
     @Override
     public void load() {
 
-        Integer characterSlots = getUser().getCharacterSlots();
-        int slotsAvailable = characterSlots == null ? 0 : characterSlots;
+        Integer character_Slots = getUser().getCharacterSlots();
+        int available_slots = character_Slots == null ? 0 : character_Slots;
 
         Set<Character> characters = getUser().getCharacters();
         int slotsUsed = characters == null ? 0 : characters.size();
 
-        String slotLabelText = String.valueOf(slotsAvailable - slotsUsed);
-        slotLabel.setText(slotLabelText);
+        String slotLabel = String.valueOf(available_slots - slotsUsed);
+        slot_Label.setText(slotLabel);
 
         loadCharacters();
     }
 
-    public void addCharacterBtn_Click(ActionEvent actionEvent) {
+    public void createCharacterBtn(ActionEvent actionEvent) {
 
-        Integer slotsAvailable = getUser().getCharacterSlots();
+        Integer available_slots = getUser().getCharacterSlots();
         Integer slotsUsed = getUser().getCharacters().size();
 
-        boolean isValidated;
+        boolean validated;
         boolean characterNameExists;
 
-        String characterName = characterNameField.getText();
+        String characterName = character_Name_Field.getText();
 
-        String characterRace = (String) characterRaceBox.getSelectionModel().getSelectedItem();
-        String characterClass = (String) classBox.getSelectionModel().getSelectedItem();
-        String characterLevel = levelField.getText();
+        String characterRace = (String) character_Race_DropdownBox.getSelectionModel().getSelectedItem();
+        String characterClass = (String) class_Box.getSelectionModel().getSelectedItem();
+        String characterLevel = level_Field.getText();
 
-        isValidated = verification(characterName, characterRace, characterClass, characterLevel);
+        validated = verification(characterName, characterRace, characterClass, characterLevel);
         characterNameExists = findCharacter(characterName);
 
-        if (isValidated && !characterNameExists) {
+        if (validated && !characterNameExists) {
 
-            setTitle(Constants.CHARACTER_SCENE_HEADER.toUpperCase());
-            showWindow(true, false);
+            setTitle(Constants.CHARACTERHEADER.toUpperCase());
+            viewWindow(true, false);
 
             Character character = new Character(characterName, characterClass, characterRace, Integer.parseInt(characterLevel));
 
             getUser().setCharacter(character);
 
-            boolean isAdded = getUserService().updateUser(getUser());
+            boolean created = getUserService().updateUser(getUser());
 
-            if (isAdded) {
+            if (created) {
                 createCharacter(character);
 
-                String slotLabelText = String.valueOf(slotsAvailable - slotsUsed - 1);
-                slotLabel.setText(slotLabelText);
+                String slotLabelText = String.valueOf(available_slots - slotsUsed - 1);
+                slot_Label.setText(slotLabelText);
             }
         }
 
-        messageLabel.setText(slotsAvailable < slotsUsed ? "All empty slots are used!" : !isValidated ? "All fields are required!" : characterNameExists ? String.format("Sorry, but %s already exist. Try another!", characterName) : Constants.No_Value_STRING);
+        errorsLabel.setText(available_slots < slotsUsed ? "You dont have any empty slots!" : !validated ? "You need fill all required field!" : characterNameExists ? String.format(" %s already exist", characterName) : Constants.No_Value_STRING);
     }
 
     private void createCharacter(Character newCharacter) {
 
-        Button btn = createCharacterBtn(getRandomAvatarPath(), Constants.AVATAR_IMAGE_WIDTH, Constants.AVATAR_IMAGE_HEIGHT);
+        Button btn = createCharacterBtn(getAvatars(), Constants.AVATAR_IMGWIDTH, Constants.AVATAR_IMGHEIGHT);
         btn.setText(String.format("%s\nLevel: %s\nClass: %s \nRace: %s",
                 newCharacter.getCharacterName(),
                 newCharacter.getCharacterLevel(),
                 newCharacter.getCharacterClass(),
                 newCharacter.getCharacterRace()));
 
-        characterList.getChildren().add(0, btn);
+        listOfCharacterList.getChildren().add(0, btn);
     }
 
     private void loadCharacters() {
@@ -184,7 +183,7 @@ public class CharacterController extends MainController implements Initializable
         getUser().getCharacters().forEach(this::createCharacter);
     }
 
-    public void newCharacterBtn_Click(ActionEvent actionEvent) {
+    public void creatNewCharacterBtn(ActionEvent actionEvent) {
 
         Integer maxSlots = getUser().getCharacterSlots();
         Integer slotsUsed = getUser().getCharacters().size();
@@ -196,29 +195,29 @@ public class CharacterController extends MainController implements Initializable
         setTitle("Add character".toUpperCase());
 
         cleanFieldValues();
-        showWindow(false, true);
+        viewWindow(false, true);
     }
 
     private void cleanFieldValues() {
         Random random = new Random();
         String level = String.valueOf(1 + random.nextInt(99));
-        levelField.setText(level);
+        level_Field.setText(level);
 
-        messageLabel.setText(Constants.No_Value_STRING);
-        characterNameField.setText(Constants.No_Value_STRING);
-        classBox.getSelectionModel().clearSelection();
-        characterRaceBox.getSelectionModel().clearSelection();
+        errorsLabel.setText(Constants.No_Value_STRING);
+        character_Name_Field.setText(Constants.No_Value_STRING);
+        class_Box.getSelectionModel().clearSelection();
+        character_Race_DropdownBox.getSelectionModel().clearSelection();
     }
 
-    public void handleBackBtn_Click(ActionEvent actionEvent) {
+    public void returnBtn(ActionEvent actionEvent) {
         Node node = (Node) actionEvent.getSource();
-        showScene(node, Constants.FXML_HOMEPATH, Constants.HOMEHEADER, getUser());
+        showScenery(node, Constants.FXML_HOMEPATH, Constants.HOMEHEADER, getUser());
     }
 
-    private void showWindow(boolean showCharacterList, boolean showAddCharacterPanel) {
-        scrollPane.setVisible(showCharacterList);
-        addCharacterBox.setVisible(showAddCharacterPanel);
-        topPanel.setVisible(!showAddCharacterPanel);
+    private void viewWindow(boolean viewListOfCharacter, boolean viewCharacterPanel) {
+        scrollPane.setVisible(viewListOfCharacter);
+        character_Box.setVisible(viewCharacterPanel);
+        panel.setVisible(!viewCharacterPanel);
     }
 
     private boolean findCharacter(String characterNameInput) {
@@ -245,7 +244,7 @@ public class CharacterController extends MainController implements Initializable
         characterBtn.setMinHeight(100.0d);
         characterBtn.setTextAlignment(TextAlignment.LEFT);
 
-        ImageView avatarImgBtnLayout = createImageBtnLayout(imgPath, imgWidth, imgHeight);
+        ImageView avatarImgBtnLayout = createImgeBtn(imgPath, imgWidth, imgHeight);
         characterBtn.setGraphic(avatarImgBtnLayout);
 
         return characterBtn;

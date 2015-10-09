@@ -12,7 +12,7 @@ public class ServerController extends MainController {
 
     public void disconnectServer(ActionEvent actionEvent) {
 
-        getServer().setServerConnectedUsers(getServer().getServerConnectedUsers() - 1);
+        getServer().setServerJoinUsers(getServer().getServerJoinUsers() - 1);
 
         User user = getServer().getUsers().iterator().next();
 
@@ -22,6 +22,6 @@ public class ServerController extends MainController {
         System.out.printf("Server is updated: %s", isUpdated);
 
         Node node = (Node) actionEvent.getSource();
-        showScene(node, Constants.FXML_HOMEPATH, Constants.HOMEHEADER, user);
+        showScenery(node, Constants.FXML_HOMEPATH, Constants.HOMEHEADER, user);
     }
 }

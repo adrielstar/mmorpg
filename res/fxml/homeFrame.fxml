@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane styleClass="container" stylesheets="/css/style.css"
+            xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controller.HomeController">
+
+    <GridPane fx:id="homeTitle"
+              styleClass="grid-pane, grid-pane-home">
+
+        <Label fx:id="title" GridPane.rowIndex="4"
+               GridPane.columnIndex="0"
+               GridPane.columnSpan="1"/>
+
+        <Label fx:id="errorsLabel"
+               styleClass="errorMsg, errorMsg-home"
+               GridPane.rowIndex="4"
+               GridPane.columnIndex="0"
+               GridPane.columnSpan="3"/>
+
+        <VBox fx:id="serverBoxs" styleClass="server-box-home"
+              GridPane.rowIndex="5"
+              GridPane.columnIndex="0"
+              GridPane.columnSpan="2" />
+    </GridPane>
+
+    <GridPane fx:id="homeFrameContainer"
+              styleClass="grid-pane, grid-pane-home">
+
+        <Button text="Logout"
+                onAction="#logoutBtn"
+                GridPane.rowIndex="0"
+                GridPane.columnIndex="42"/>
+
+        <Button text="Profile"
+                onAction="#profileBtn"
+                GridPane.rowIndex="0"
+                GridPane.columnIndex="1"/>
+
+        <Button text="Characters"
+                onAction="#characterBtn"
+                GridPane.rowIndex="0"
+                GridPane.columnIndex="2"/>
+
+    </GridPane>
+
+
+</AnchorPane>

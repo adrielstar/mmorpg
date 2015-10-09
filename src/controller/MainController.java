@@ -35,18 +35,13 @@ abstract class MainController {
     private ObservableList<User> mUsersList;
     private ObservableList<models.Character> mCharacterList;
 
-    //endregion
 
-    //region UI Controls
 
     @FXML
     private Label title;
     private Server mServer;
 
-    //endregion
 
-
-    //region Properties
 
     protected UserService getUserService() {
         return mUserService;
@@ -96,7 +91,7 @@ abstract class MainController {
     protected void load() {
     }
 
-    protected <T> void showScene(Node node, String fxmlPath, String header, Object obj) {
+    protected <T> void showScenery(Node node, String fxmlPath, String header, Object obj) {
         URL navigationUrl = getClass().getResource(fxmlPath);
 
         Parent root = null;
@@ -156,8 +151,8 @@ abstract class MainController {
         return isValidated;
     }
 
-    protected ImageView createImageBtnLayout(String imagePath, double width, double height) {
-        Image addCharacterImg = new Image(getClass().getResourceAsStream(imagePath));
+    protected ImageView createImgeBtn(String imgPath, double width, double height) {
+        Image addCharacterImg = new Image(getClass().getResourceAsStream(imgPath));
         ImageView imageView = new ImageView(addCharacterImg);
         imageView.setFitWidth(width);
         imageView.setFitHeight(height);
@@ -165,9 +160,9 @@ abstract class MainController {
         return imageView;
     }
 
-    protected String getRandomAvatarPath() {
+    protected String getAvatars() {
         Random random = new Random();
-        int avatarNr = 1 + random.nextInt(9);
+        int avatarNr = 1 + random.nextInt(14);
 
         return String.format("%s/%s.jpg", Constants.IMAGE_AVATAR_PATH, avatarNr);
     }

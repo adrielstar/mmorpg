@@ -5,48 +5,47 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.TextFlow?>
 <?import java.lang.*?>
-<AnchorPane styleClass="container" stylesheets="/css/style.css"
-            xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+<AnchorPane styleClass="container"
+            stylesheets="/css/style.css"
+            xmlns="http://javafx.com/javafx/8"
+            xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="controller.ProfileController">
 
-    <GridPane fx:id="containerProfile"
+    <GridPane fx:id="profile_Container"
               styleClass="grid-pane, grid-pane-home">
 
-        <Button fx:id="backButton"
-                onAction="#handleBackBtn_Click"
-                GridPane.rowIndex="0"
-                GridPane.columnIndex="0"/>
+
 
         <Label fx:id="title"
                GridPane.rowIndex="2"
-               GridPane.columnIndex="0" text="Welcome "/>
+               GridPane.columnIndex="0"/>
 
         <AnchorPane GridPane.rowIndex="3"
                     GridPane.columnIndex="0">
 
-            <Label fx:id="messageLabel"
+            <Label fx:id="errorsLabel"
                    AnchorPane.topAnchor="5"
                    AnchorPane.leftAnchor="5"
-                   styleClass="validationLabel"/>
+                   styleClass="errorMsg"/>
 
             <Label AnchorPane.topAnchor="30"
                    AnchorPane.leftAnchor="10"
                    text="Username: "/>
-            <Label fx:id="usernameLabel"
+            <Label fx:id="username_Label"
                    AnchorPane.topAnchor="30"
                    AnchorPane.leftAnchor="110"/>
 
             <Label AnchorPane.topAnchor="50"
                    AnchorPane.leftAnchor="10"
                    text="Balance: "/>
-            <Label fx:id="userBalanceLabel"
+            <Label fx:id="balance_Label"
                    AnchorPane.topAnchor="50"
                    AnchorPane.leftAnchor="110"/>
 
             <Label AnchorPane.topAnchor="70"
                    AnchorPane.leftAnchor="10"
                    text="IBAN: "/>
-            <Label fx:id="userIbanLabel"
+            <Label fx:id="iban_Label"
                    AnchorPane.topAnchor="70"
                    AnchorPane.leftAnchor="110"/>
 
@@ -66,10 +65,11 @@
             <Label AnchorPane.topAnchor="30"
                    AnchorPane.leftAnchor="320"
                    text="Character Slots: "/>
+
             <TextFlow AnchorPane.topAnchor="30"
                       AnchorPane.leftAnchor="544">
-                <Label fx:id="userCharacterSlotsLabel"/>
-                <Label text=" "/>
+                <Label fx:id="characterSlots_Label"/>
+
                 <Label text=" Slots"/>
             </TextFlow>
 
@@ -103,7 +103,7 @@
                    text="Subscribed for: "/>
             <TextFlow AnchorPane.topAnchor="140"
                       AnchorPane.leftAnchor="524">
-                <Label fx:id="userMonthsPayedLabel"/>
+                <Label fx:id="monthsPayed_Label"/>
                 <Label text=" "/>
                 <Label text=" Months"/>
             </TextFlow>
@@ -128,9 +128,15 @@
             </ChoiceBox>
 
             <Button text="Subscribe"
-                    onAction="#addSubscriptionBtn_Click"
+                    onAction="#subscriptionBtn"
                     AnchorPane.topAnchor="205"
                     AnchorPane.leftAnchor="516"/>
+
+            <Button fx:id="cancelBtn"
+                    text="Cancel"
+                    onAction="#cancelBtn"
+                    AnchorPane.topAnchor="205"
+                    AnchorPane.rightAnchor="516" />
         </AnchorPane>
     </GridPane>
 </AnchorPane>

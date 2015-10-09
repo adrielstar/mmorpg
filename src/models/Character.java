@@ -1,11 +1,13 @@
 package models;
 
-/**
- * Created by Adriel on 10/7/2015.
- */
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
+
+/**
+ * Created by Adriel on 10/7/2015.
+ */
+
 
 @Entity
 @Table(name = "characters")
@@ -13,19 +15,19 @@ public class Character {
 
     @Id
     @Column(name = "name")
-    private String mCharacterName;
+    private String cCharacterName;
 
     @Column(name = "class")
-    private String mCharacterClass;
+    private String cCharacterClass;
 
     @Column(name = "race")
-    private String mCharacterRace;
+    private String cCharacterRace;
 
     @Column(name = "level")
-    private Integer mCharacterLevel;
+    private Integer cCharacterLevel;
 
     @ManyToMany(mappedBy="mCharacters")
-    private Set<User> mUsers = new HashSet<>();
+    private Set<User> cUsers = new HashSet<>();
 
     public Character() {
         super();
@@ -34,29 +36,29 @@ public class Character {
     public Character(String characterName, String characterClass, String characterRace,
                      Integer characterLevel) {
         super();
-        mCharacterName = characterName;
-        mCharacterClass = characterClass;
-        mCharacterRace = characterRace;
-        mCharacterLevel = characterLevel;
+        cCharacterName = characterName;
+        cCharacterClass = characterClass;
+        cCharacterRace = characterRace;
+        cCharacterLevel = characterLevel;
     }
 
     public String getCharacterName() {
-        return mCharacterName;
+        return cCharacterName;
     }
 
     public String getCharacterClass() {
-        return mCharacterClass;
+        return cCharacterClass;
     }
 
     public String getCharacterRace() {
-        return mCharacterRace;
+        return cCharacterRace;
     }
 
     public Integer getCharacterLevel() {
-        return mCharacterLevel;
+        return cCharacterLevel;
     }
 
     public Set<User> getUsers() {
-        return mUsers;
+        return cUsers;
     }
 }

@@ -62,13 +62,13 @@ public class LoginController extends MainController implements Initializable {
 
         if (userSingIn) {
             Node node = (Node) actionEvent.getSource();
-            showScene(node, Constants.FXML_HOMEPATH, Constants.HOMEHEADER, getUser());
+            showScenery(node, Constants.FXML_HOMEPATH, Constants.HOMEHEADER, getUser());
         }
     }
 
     public void registerBtn(ActionEvent actionEvent) {
         Node node = (Node) actionEvent.getSource();
-        showScene(node, Constants.FXML_REGISTERPATH, Constants.REGISTERHEADER, getUserList());
+        showScenery(node, Constants.FXML_REGISTERPATH, Constants.REGISTERHEADER, getUserList());
     }
 
     private boolean userSignIn(String userName, String userPassword) {
@@ -96,7 +96,7 @@ public class LoginController extends MainController implements Initializable {
             Server server1 = new Server("189.30.62.1", "Server 1", "Japan", 100, 66);
             Server server2 = new Server("195.22.55.2", "Server 2", "China", 100, 100);
             Server server3 = new Server("192.98.48.3", "Server 3", "Usa", 100, 90);
-            Server server4 = new Server("192.98.48.3", "Server 3", "Europe", 100, 25);
+            Server server4 = new Server("188.11.30.1", "Server 4", "Europe", 100, 25);
 
             boolean addServer;
 

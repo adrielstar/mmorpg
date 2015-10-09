@@ -19,11 +19,15 @@
     -fx-padding: 0 0 200 280px;
 }
 
-#containerHomepage {
+#homeFrameContainer {
     -fx-padding: 10px 5px 5px 10px;
 }
 
-#containerProfile {
+#homeTitle {
+-fx-padding: 0px 0px 100px 100px;
+}
+
+#profile_Container {
     -fx-padding: 10px 5px 5px 10px;
 }
 
@@ -42,6 +46,11 @@
 #cancelBtn {
     -fx-alignment: center;
 }
+
+.createCharacterBtn {
+    -fx-alignment: center;
+}
+
 
 #characterClass {
     -fx-font-size: 18;
@@ -72,6 +81,18 @@
 
 .grid-pane-home {
     -fx-hgap: 15;
+}
+
+.errorMsg-home {
+-fx-padding: 55 0 0 200px;
+}
+
+.server-box-home {
+-fx-padding: 0 0 0 100px;
+}
+
+#characterContainer {
+-fx-padding: 0 0 0 200px;
 }
 
 .scroll-pane > .viewport {
