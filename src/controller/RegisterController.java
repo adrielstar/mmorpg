@@ -8,7 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import models.User;
-import units.Constants;
+import init.StanderHelper;
 
 
 /**
@@ -56,12 +56,12 @@ public class RegisterController extends MainController {
             userRegister(node, userName, firstName, lastName, password, iban);
         }
 
-        errorsLabel.setText(!verifications  ? "You miss filling one field" : existedUserName ? String.format(" %s Already Exist in us database", userName) : Constants.No_Value_STRING);
+        errorsLabel.setText(!verifications  ? "You miss filling one field" : existedUserName ? String.format(" %s Already Exist in us database", userName) : StanderHelper.No_Value_STRING);
     }
 
     public void cancelBtn(ActionEvent actionEvent) {
         Node node = (Node) actionEvent.getSource();
-        showScenery(node, Constants.FXML_LOGINPATH, Constants.LOGINHEADER, null);
+        showScenery(node, StanderHelper.FXML_LOGINPATH, StanderHelper.LOGINHEADER, null);
     }
 
     private void userRegister(Node node, String userName, String firstName, String lastName, String password, String iban) {
@@ -74,7 +74,7 @@ public class RegisterController extends MainController {
 
             boolean isAdded = addUsers(newUsers);
             if (isAdded) {
-                showScenery(node, Constants.FXML_HOMEPATH, Constants.HOMEHEADER, getUser());
+                showScenery(node, StanderHelper.FXML_HOMEPATH, StanderHelper.HOMEHEADER, getUser());
             }
         }
     }

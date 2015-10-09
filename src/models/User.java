@@ -1,7 +1,7 @@
 package models;
 
 import org.hibernate.annotations.Proxy;
-import units.Constants;
+import init.StanderHelper;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -66,9 +66,9 @@ public class User {
     public User(String username, String firstName, String lastName, String iban, String password) {
         super();
         mUsername = username;
-        mBalance = Constants.BALANCE;
-        mCharacterSlots = Constants.CHARACTER_SLOTS;
-        mMonthsPayed = Constants.MONTHS_PAYED;
+        mBalance = StanderHelper.BALANCE;
+        mCharacterSlots = StanderHelper.CHARACTER_SLOTS;
+        mMonthsPayed = StanderHelper.MONTHS_PAYED;
         mFirstName = firstName;
         mLastName = lastName;
         mIban = iban;

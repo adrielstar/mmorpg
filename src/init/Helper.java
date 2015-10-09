@@ -1,17 +1,17 @@
-package units;
+package init;
 
 /**
  * Created by Adriel on 10/8/2015.
  */
-public class Helpers {
+public class Helper {
 
-    public static boolean isDouble(String amount) {
+    public static boolean asDouble(String amount) {
         try {
             Double balance = Double.parseDouble(amount);
-            System.out.println(balance + " is a number.");
+            System.out.println(balance + "  number.");
             return true;
         } catch (NumberFormatException e) {
-            System.out.println(amount + " is not a number.");
+            System.out.println(amount + " not number.");
             return false;
         }
     }

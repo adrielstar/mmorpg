@@ -1,4 +1,4 @@
-package units;
+package init;
 
 /**
  * Created by Adriel on 10/8/2015.
@@ -15,15 +15,15 @@ import org.hibernate.context.internal.ManagedSessionContext;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
 
-public class HibernateUtil {
+public class Hibernate {
 
     private static SessionFactory SESSION_FACTORY = null;
     private static ServiceRegistry SERVICE_REGISTRY = null;
 
-    private static HibernateUtil instance;
+    private static Hibernate instance;
     private static Session mSession;
 
-    private HibernateUtil() {
+    private Hibernate() {
         try {
             Configuration configuration = getConfiguration();
 
@@ -36,11 +36,11 @@ public class HibernateUtil {
         }
     }
 
-    public static HibernateUtil getInstance() {
+    public static Hibernate getInstance() {
         if (instance == null) {
-            synchronized (HibernateUtil.class) {
+            synchronized (Hibernate.class) {
                 if (instance == null) {
-                    instance = new HibernateUtil();
+                    instance = new Hibernate();
                 }
             }
         }
@@ -57,7 +57,7 @@ public class HibernateUtil {
 
     public void commitTransaction(Session session) {
 
-        ManagedSessionContext.unbind(HibernateUtil.SESSION_FACTORY);
+        ManagedSessionContext.unbind(Hibernate.SESSION_FACTORY);
         session.getTransaction().commit();
         session.flush();
         session.close();
@@ -71,9 +71,9 @@ public class HibernateUtil {
         cfg.addAnnotatedClass(Server.class);
 
         cfg.setProperty("hibernate.connection.driver_class", "org.postgresql.Driver");
-        cfg.setProperty("hibernate.connection.url", "jdbc:postgresql://127.0.0.1:5432/battlefield");
-        cfg.setProperty("hibernate.connection.username", "postgres");
-        cfg.setProperty("hibernate.connection.password", "daniel1986");
+        cfg.setProperty("hibernate.connection.url", Credential.DATABASE_CONNECTION);
+        cfg.setProperty("hibernate.connection.username", Credential.DATABASE_USER);
+        cfg.setProperty("hibernate.connection.password", Credential.DATABASE_PASSWORD);
         cfg.setProperty("hibernate.show_sql", "true");
         cfg.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
         cfg.setProperty("hibernate.hbm2ddl.auto", "update");

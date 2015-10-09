@@ -8,8 +8,8 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import models.User;
-import units.Constants;
-import units.Helpers;
+import init.StanderHelper;
+import init.Helper;
 
 import java.sql.Timestamp;
 import java.util.Date;
@@ -43,11 +43,11 @@ public class ProfileController extends MainController {
     public Label monthsPayed_Label;
 
     @FXML
-    public TextField balanceField;
+    public TextField balance_Field;
     @FXML
-    public ChoiceBox characterSlotBox;
+    public ChoiceBox characterBox;
     @FXML
-    public ChoiceBox subscriptionBox;
+    public ChoiceBox subscrBox;
 
 
 
@@ -80,13 +80,13 @@ public class ProfileController extends MainController {
 
     public void cancelBtn(ActionEvent actionEvent) {
         Node node = (Node) actionEvent.getSource();
-        showScenery(node, Constants.FXML_HOMEPATH, Constants.HOMEHEADER, getUser());
+        showScenery(node, StanderHelper.FXML_HOMEPATH, StanderHelper.HOMEHEADER, getUser());
     }
 
-    public void addMoneyBtn_Click(ActionEvent actionEvent) {
+    public void moneyBtn(ActionEvent actionEvent) {
 
-        String amountInput = balanceField.getText();
-        String warning = checkBalanceInput(amountInput);
+        String amountInput = balance_Field.getText();
+        String warning = validateBalance(amountInput);
 
         if (warning == null) {
             double userBalance = getUser().getBalance();
@@ -101,13 +101,13 @@ public class ProfileController extends MainController {
             }
         }
 
-        errorsLabel.setText(warning != null ? warning : Constants.No_Value_STRING);
-        balanceField.clear();
+        errorsLabel.setText(warning != null ? warning : StanderHelper.No_Value_STRING);
+        balance_Field.clear();
     }
 
-    public void addSlotBtn_Click(ActionEvent actionEvent) {
+    public void slotBtn(ActionEvent actionEvent) {
 
-        String selectedItem = (String) characterSlotBox.getSelectionModel().getSelectedItem();
+        String selectedItem = (String) characterBox.getSelectionModel().getSelectedItem();
         int amount;
 
         switch (selectedItem) {
@@ -144,7 +144,7 @@ public class ProfileController extends MainController {
             }
         }
 
-        errorsLabel.setText(getUser().getBalance() < amount ? "You don't have money on your account" : Constants.No_Value_STRING);
+        errorsLabel.setText(getUser().getBalance() < amount ? "You don't have money on your account" : StanderHelper.No_Value_STRING);
     }
 
     public boolean updateUser(User user) {
@@ -168,11 +168,11 @@ public class ProfileController extends MainController {
             }
         }
 
-        errorsLabel.setText(getUser().getBalance() < balance ? "You don't have money on your account" : Constants.No_Value_STRING);
+        errorsLabel.setText(getUser().getBalance() < balance ? "You don't have money on your account" : StanderHelper.No_Value_STRING);
     }
 
     public void subscriptionBtn() {
-        String selectedItem = (String) subscriptionBox.getSelectionModel().getSelectedItem();
+        String selectedItem = (String) subscrBox.getSelectionModel().getSelectedItem();
 
         int months;
         int balance;
@@ -200,10 +200,10 @@ public class ProfileController extends MainController {
         addAmount(months, balance);
     }
 
-    private String checkBalanceInput(String value) {
+    private String validateBalance(String value) {
         if (value == null || value.isEmpty()) {
             return "Add amount to your bank account!";
-        } else if (!Helpers.isDouble(value)) {
+        } else if (!Helper.asDouble(value)) {
             return "Please enter a number!";
         } else if (Double.parseDouble(value) <= 0) {
             return "Please enter a number greater than zero!";

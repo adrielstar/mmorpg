@@ -14,8 +14,6 @@
     <GridPane fx:id="profile_Container"
               styleClass="grid-pane, grid-pane-home">
 
-
-
         <Label fx:id="title"
                GridPane.rowIndex="2"
                GridPane.columnIndex="0"/>
@@ -52,13 +50,13 @@
             <Label AnchorPane.topAnchor="100"
                    AnchorPane.leftAnchor="10"
                    text="Add money: "/>
-            <TextField fx:id="balanceField"
+            <TextField fx:id="balance_Field"
                        AnchorPane.topAnchor="95"
                        AnchorPane.leftAnchor="110"
                        promptText="Enter amount"/>
 
-            <Button text="Add to balance"
-                    onAction="#addMoneyBtn_Click"
+            <Button text="Add Money"
+                    onAction="#moneyBtn"
                     AnchorPane.topAnchor="135"
                     AnchorPane.leftAnchor="163"/>
 
@@ -76,7 +74,7 @@
             <Label AnchorPane.topAnchor="50"
                    AnchorPane.leftAnchor="320"
                    text="Add Slots: "/>
-            <ChoiceBox fx:id="characterSlotBox"
+            <ChoiceBox fx:id="characterBox"
                        AnchorPane.topAnchor="50"
                        AnchorPane.leftAnchor="530">
                 <value>
@@ -94,7 +92,7 @@
             </ChoiceBox>
 
             <Button text="Add Slot(s)"
-                    onAction="#addSlotBtn_Click"
+                    onAction="#slotBtn"
                     AnchorPane.topAnchor="90"
                     AnchorPane.leftAnchor="502"/>
 
@@ -111,7 +109,7 @@
             <Label AnchorPane.topAnchor="170"
                    AnchorPane.leftAnchor="320"
                    text="Choose Subscription: "/>
-            <ChoiceBox fx:id="subscriptionBox"
+            <ChoiceBox fx:id="subscrBox"
                        AnchorPane.topAnchor="165"
                        AnchorPane.leftAnchor="514">
                 <value>

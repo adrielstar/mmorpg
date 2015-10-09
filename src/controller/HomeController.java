@@ -6,7 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.Node;
 import javafx.scene.layout.VBox;
 import models.Server;
-import units.Constants;
+import init.StanderHelper;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import java.util.List;
@@ -40,7 +40,7 @@ public class HomeController extends MainController {
         int online_Users = server.getServerJoinUsers();
         int totalUsers = server.getServerTotalUsers();
         boolean onlineServer = online_Users < totalUsers;
-        String imgPath = onlineServer ? Constants.SERVER_ONLINE_IMGPATH : Constants.SERVER_OFFLINE_IMGPATH;
+        String imgPath = onlineServer ? StanderHelper.SERVER_ONLINE_IMGPATH : StanderHelper.SERVER_OFFLINE_IMGPATH;
 
         Button serverBtn = create_ServerBtn(server_Name, server_Location, online_Users, totalUsers, imgPath);
         serverBtn.setDisable(!onlineServer);
@@ -51,7 +51,7 @@ public class HomeController extends MainController {
 
             if (join) {
                 Node node = (Node) actionEvent.getSource();
-                showScenery(node, Constants.FXML_SERVERPATH, server_Name, getServer());
+                showScenery(node, StanderHelper.FXML_SERVERPATH, server_Name, getServer());
             }
         });
 
@@ -80,10 +80,10 @@ public class HomeController extends MainController {
     private Button create_ServerBtn(String server_Name, String server_Location, Integer onlineUsers, Integer totalUsers, String imgPath) {
         Button serverBtn = new Button();
 
-        serverBtn.setPrefSize(Constants.SERVER_BUTTON_WIDTH, Constants.SERVER_BUTTON_HEIGHT);
+        serverBtn.setPrefSize(StanderHelper.SERVER_BUTTON_WIDTH, StanderHelper.SERVER_BUTTON_HEIGHT);
         serverBtn.setText(String.format("%s [%s] Users: %s/%s", server_Name, server_Location, onlineUsers, totalUsers));
 
-        ImageView avatarImgBtnLayout = createImgeBtn(imgPath, Constants.SERVER_IMAGE_WIDTH, Constants.SERVER_IMAGE_HEIGHT);
+        ImageView avatarImgBtnLayout = createImgeBtn(imgPath, StanderHelper.SERVER_IMAGE_WIDTH, StanderHelper.SERVER_IMAGE_HEIGHT);
         serverBtn.setGraphic(avatarImgBtnLayout);
 
         return serverBtn;
@@ -99,17 +99,17 @@ public class HomeController extends MainController {
 
     public void logoutBtn(ActionEvent actionEvent) {
         Node node = (Node) actionEvent.getSource();
-        showScenery(node, Constants.FXML_LOGINPATH, Constants.LOGINHEADER, null);
+        showScenery(node, StanderHelper.FXML_LOGINPATH, StanderHelper.LOGINHEADER, null);
     }
 
     public void profileBtn(ActionEvent actionEvent) {
         Node node = (Node) actionEvent.getSource();
-        showScenery(node, Constants.FXML_PROFILEPATH, Constants.PROFILEHEADER, getUser());
+        showScenery(node, StanderHelper.FXML_PROFILEPATH, StanderHelper.PROFILEHEADER, getUser());
     }
 
     public void characterBtn(ActionEvent actionEvent) {
         Node node = (Node) actionEvent.getSource();
-        showScenery(node, Constants.FXML_CHARACTERPATH, Constants.CHARACTERHEADER, getUser());
+        showScenery(node, StanderHelper.FXML_CHARACTERPATH, StanderHelper.CHARACTERHEADER, getUser());
     }
 
 }

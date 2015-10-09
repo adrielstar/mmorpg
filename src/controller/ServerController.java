@@ -6,7 +6,7 @@ package controller;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
 import models.User;
-import units.Constants;
+import init.StanderHelper;
 
 public class ServerController extends MainController {
 
@@ -22,6 +22,6 @@ public class ServerController extends MainController {
         System.out.printf("Server is updated: %s", isUpdated);
 
         Node node = (Node) actionEvent.getSource();
-        showScenery(node, Constants.FXML_HOMEPATH, Constants.HOMEHEADER, user);
+        showScenery(node, StanderHelper.FXML_HOMEPATH, StanderHelper.HOMEHEADER, user);
     }
 }

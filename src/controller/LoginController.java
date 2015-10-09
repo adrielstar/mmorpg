@@ -11,7 +11,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import models.Server;
 import models.User;
-import units.Constants;
+import init.StanderHelper;
 
 import java.net.URL;
 import java.util.List;
@@ -62,13 +62,13 @@ public class LoginController extends MainController implements Initializable {
 
         if (userSingIn) {
             Node node = (Node) actionEvent.getSource();
-            showScenery(node, Constants.FXML_HOMEPATH, Constants.HOMEHEADER, getUser());
+            showScenery(node, StanderHelper.FXML_HOMEPATH, StanderHelper.HOMEHEADER, getUser());
         }
     }
 
     public void registerBtn(ActionEvent actionEvent) {
         Node node = (Node) actionEvent.getSource();
-        showScenery(node, Constants.FXML_REGISTERPATH, Constants.REGISTERHEADER, getUserList());
+        showScenery(node, StanderHelper.FXML_REGISTERPATH, StanderHelper.REGISTERHEADER, getUserList());
     }
 
     private boolean userSignIn(String userName, String userPassword) {
@@ -81,7 +81,7 @@ public class LoginController extends MainController implements Initializable {
             setUser(user);
         }
 
-        errorsLabel.setText(user == null ? "Username or Password is not Correct!" : Constants.No_Value_STRING);
+        errorsLabel.setText(user == null ? "Username or Password is not Correct!" : StanderHelper.No_Value_STRING);
 
         return userSignedIn;
     }

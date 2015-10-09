@@ -4,14 +4,14 @@ package dataAccObject;
  * Created by Adriel on 10/8/2015.
  */
 import org.hibernate.Session;
-import units.EntityEnum;
-import units.HibernateUtil;
+import init.IdentetyUnit;
+import init.Hibernate;
 
 import java.util.List;
 
 public abstract class MainDataAccObject
 {
-    private HibernateUtil hibernate = HibernateUtil.getInstance();
+    private Hibernate hibernate = Hibernate.getInstance();
 
     protected boolean add(Object obj) {
         boolean isAdded = false;
@@ -75,12 +75,12 @@ public abstract class MainDataAccObject
         return isDeleted;
     }
 
-    protected <T> List<T> getList(EntityEnum entity)
+    protected <T> List<T> getList(IdentetyUnit entity)
     {
         return get(entity);
     }
 
-    private <T> List<T> get(EntityEnum entity) {
+    private <T> List<T> get(IdentetyUnit entity) {
         Object result = null;
 
         try

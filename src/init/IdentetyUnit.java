@@ -1,9 +1,9 @@
-package units;
+package init;
 
 /**
  * Created by Adriel on 10/8/2015.
  */
-public enum EntityEnum {
+public enum IdentetyUnit {
     Character,
     User,
     Server

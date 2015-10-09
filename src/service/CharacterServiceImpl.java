@@ -6,7 +6,7 @@ package service;
 
 import dataAccObject.MainDataAccObject;
 import models.Character;
-import units.EntityEnum;
+import init.IdentetyUnit;
 
 import java.util.List;
 
@@ -16,7 +16,7 @@ public class CharacterServiceImpl extends MainDataAccObject implements Character
     public boolean addCharacter(models.Character character) { return add(character); }
 
     @Override
-    public List<Character> CharacterList() { return getList(EntityEnum.Character); }
+    public List<Character> CharacterList() { return getList(IdentetyUnit.Character); }
 
     @Override
     public void deleteCharacter(String characterName) {

@@ -5,7 +5,7 @@ package service;
  */
 import dataAccObject.MainDataAccObject;
 import models.Server;
-import units.EntityEnum;
+import init.IdentetyUnit;
 
 import java.util.List;
 
@@ -15,7 +15,7 @@ public class ServerServiceImpl extends MainDataAccObject implements ServerServic
     public boolean addServer(Server server) { return add(server); }
 
     @Override
-    public List<Server> ServerList() { return getList(EntityEnum.Server); }
+    public List<Server> ServerList() { return getList(IdentetyUnit.Server); }
 
     @Override
     public void deleteServer(String serverName) { delete(serverName); }

@@ -5,7 +5,7 @@ package service;
  */
 import dataAccObject.MainDataAccObject;
 import models.User;
-import units.EntityEnum;
+import init.IdentetyUnit;
 
 import java.util.List;
 
@@ -17,7 +17,7 @@ public class UserServiceImpl extends MainDataAccObject implements UserService {
     }
 
     @Override
-    public List<User> userList() { return getList(EntityEnum.User); }
+    public List<User> userList() { return getList(IdentetyUnit.User); }
 
     @Override
     public boolean deleteUser(String userName) {

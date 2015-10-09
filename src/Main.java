@@ -4,7 +4,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import units.Constants;
+import init.StanderHelper;
 
 import java.io.IOException;
 import java.net.URL;
@@ -14,9 +14,9 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        Font.loadFont(getClass().getResource(Constants.DEFAULT_TEXT_FONT_PATH).toExternalForm(), Constants.DEFAULT_FONT_TEXT_SIZE);
+        Font.loadFont(getClass().getResource(StanderHelper.DEFAULT_TEXT_FONT_PATH).toExternalForm(), StanderHelper.DEFAULT_FONT_TEXT_SIZE);
 
-        showScene(primaryStage, Constants.FXML_LOGINPATH, Constants.LOGINHEADER);
+        showScene(primaryStage, StanderHelper.FXML_LOGINPATH, StanderHelper.LOGINHEADER);
     }
 
     public static void main(String[] args) {
@@ -40,8 +40,8 @@ public class Main extends Application {
         }
 
         if (root != null) {
-            Scene rootScene = new Scene(root, Constants.APP_WIDTH, Constants.APP_HEIGHT);
-            String title = String.format("%s - %s", header, Constants.APP_NAME);
+            Scene rootScene = new Scene(root, StanderHelper.APP_WIDTH, StanderHelper.APP_HEIGHT);
+            String title = String.format("%s - %s", header, StanderHelper.APP_NAME);
 
             primaryStage.setTitle(title);
             primaryStage.setScene(rootScene);

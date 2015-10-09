@@ -12,7 +12,7 @@ import javafx.scene.Node;
 import models.Character;
 import service.CharacterService;
 import service.CharacterServiceImpl;
-import units.Constants;
+import init.StanderHelper;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.TextAlignment;
@@ -103,7 +103,7 @@ public class CharacterController extends MainController implements Initializable
             cancelBtn.setOnAction(event ->
             {
                 viewWindow(true, false);
-                setTitle(Constants.CHARACTERHEADER.toUpperCase());
+                setTitle(StanderHelper.CHARACTERHEADER.toUpperCase());
             });
 
         level_Field.setEditable(false);
@@ -146,7 +146,7 @@ public class CharacterController extends MainController implements Initializable
 
         if (validated && !characterNameExists) {
 
-            setTitle(Constants.CHARACTERHEADER.toUpperCase());
+            setTitle(StanderHelper.CHARACTERHEADER.toUpperCase());
             viewWindow(true, false);
 
             Character character = new Character(characterName, characterClass, characterRace, Integer.parseInt(characterLevel));
@@ -163,12 +163,12 @@ public class CharacterController extends MainController implements Initializable
             }
         }
 
-        errorsLabel.setText(available_slots < slotsUsed ? "You dont have any empty slots!" : !validated ? "You need fill all required field!" : characterNameExists ? String.format(" %s already exist", characterName) : Constants.No_Value_STRING);
+        errorsLabel.setText(available_slots < slotsUsed ? "You dont have any empty slots!" : !validated ? "You need fill all required field!" : characterNameExists ? String.format(" %s already exist", characterName) : StanderHelper.No_Value_STRING);
     }
 
     private void createCharacter(Character newCharacter) {
 
-        Button btn = createCharacterBtn(getAvatars(), Constants.AVATAR_IMGWIDTH, Constants.AVATAR_IMGHEIGHT);
+        Button btn = createCharacterBtn(getAvatars(), StanderHelper.AVATAR_IMGWIDTH, StanderHelper.AVATAR_IMGHEIGHT);
         btn.setText(String.format("%s\nLevel: %s\nClass: %s \nRace: %s",
                 newCharacter.getCharacterName(),
                 newCharacter.getCharacterLevel(),
@@ -203,15 +203,15 @@ public class CharacterController extends MainController implements Initializable
         String level = String.valueOf(1 + random.nextInt(99));
         level_Field.setText(level);
 
-        errorsLabel.setText(Constants.No_Value_STRING);
-        character_Name_Field.setText(Constants.No_Value_STRING);
+        errorsLabel.setText(StanderHelper.No_Value_STRING);
+        character_Name_Field.setText(StanderHelper.No_Value_STRING);
         class_Box.getSelectionModel().clearSelection();
         character_Race_DropdownBox.getSelectionModel().clearSelection();
     }
 
     public void returnBtn(ActionEvent actionEvent) {
         Node node = (Node) actionEvent.getSource();
-        showScenery(node, Constants.FXML_HOMEPATH, Constants.HOMEHEADER, getUser());
+        showScenery(node, StanderHelper.FXML_HOMEPATH, StanderHelper.HOMEHEADER, getUser());
     }
 
     private void viewWindow(boolean viewListOfCharacter, boolean viewCharacterPanel) {

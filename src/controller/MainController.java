@@ -19,7 +19,7 @@ import service.ServerService;
 import service.ServerServiceImpl;
 import service.UserService;
 import service.UserServiceImpl;
-import units.Constants;
+import init.StanderHelper;
 
 import java.io.IOException;
 import java.net.URL;
@@ -108,10 +108,10 @@ abstract class MainController {
         }
 
         if (root != null) {
-            Scene rootScene = new Scene(root, Constants.APP_WIDTH, Constants.APP_HEIGHT);
+            Scene rootScene = new Scene(root, StanderHelper.APP_WIDTH, StanderHelper.APP_HEIGHT);
             Stage primaryStage = (Stage) node.getScene().getWindow();
 
-            String title = String.format("%s - %s", header, Constants.APP_NAME);
+            String title = String.format("%s - %s", header, StanderHelper.APP_NAME);
 
             primaryStage.setTitle(title);
             primaryStage.setScene(rootScene);
@@ -164,7 +164,7 @@ abstract class MainController {
         Random random = new Random();
         int avatarNr = 1 + random.nextInt(14);
 
-        return String.format("%s/%s.jpg", Constants.IMAGE_AVATAR_PATH, avatarNr);
+        return String.format("%s/%s.jpg", StanderHelper.IMAGE_AVATAR_PATH, avatarNr);
     }
 
     public void setServer(Server server) {
