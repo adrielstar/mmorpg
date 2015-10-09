@@ -16,8 +16,7 @@
 
         <Label fx:id="title"
                GridPane.rowIndex="2"
-               GridPane.columnIndex="0"
-               styleClass="profile-title"/>
+               GridPane.columnIndex="0"/>
 
         <AnchorPane GridPane.rowIndex="3"
                     GridPane.columnIndex="0">
@@ -134,7 +133,7 @@
                     AnchorPane.leftAnchor="516"/>
 
             <Button fx:id="cancelBtn"
-                    text="Cancel"
+                    text="Back"
                     onAction="#cancelBtn"
                     AnchorPane.topAnchor="205"
                     AnchorPane.rightAnchor="516" />

@@ -19,10 +19,6 @@
     -fx-hgap: 15;
 }
 
-.profile-title{
--fx-padding: 55 0 0 200px;
-}
-
 .errorMsg-home {
 -fx-padding: 55 0 0 200px;
 }
@@ -30,6 +26,7 @@
 .server-box-home {
 -fx-padding: 0 0 0 100px;
 }
+
 
 #characterContainer {
 -fx-padding: 0 0 0 200px;
