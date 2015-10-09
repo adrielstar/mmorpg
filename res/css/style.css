@@ -15,8 +15,8 @@
     -fx-padding: 0 0 150 310px;
 }
 
-#containerRegister {
-    -fx-padding: 0 0 0 220px;
+#registerContainer {
+    -fx-padding: 0 0 200 280px;
 }
 
 #containerHomepage {
@@ -63,6 +63,7 @@
 
 #title {
     -fx-font-size: 35px;
+    -fx-padding: 0 0 0 100px;
 }
 
 .grid-pane {

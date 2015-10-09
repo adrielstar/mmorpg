@@ -16,7 +16,7 @@ public class Main extends Application {
 
         Font.loadFont(getClass().getResource(Constants.DEFAULT_TEXT_FONT_PATH).toExternalForm(), Constants.DEFAULT_FONT_TEXT_SIZE);
 
-        showScene(primaryStage, Constants.LOGIN_FXML_PATH, Constants.LOGIN_SCENE_HEADER);
+        showScene(primaryStage, Constants.FXML_LOGINPATH, Constants.LOGINHEADER);
     }
 
     public static void main(String[] args) {

@@ -1,112 +1,102 @@
 package controller;
 
-/**
- * Created by Adriel on 10/8/2015.
- */
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
 import models.User;
 import units.Constants;
 
-import java.net.URL;
-import java.util.ResourceBundle;
 
-public class RegisterController extends MainController implements Initializable {
+/**
+ * Created by Adriel on 10/8/2015.
+ */
 
-    //region UI Controls
-    @FXML
-    public Label messageLabel;
+public class RegisterController extends MainController {
 
     @FXML
-    public Button backBtn;
+    public Label errorsLabel;
 
     @FXML
-    public TextField userNameField;
+    public TextField userName_Field;
     @FXML
-    public TextField firstNameField;
+    public TextField first_Name_Field;
     @FXML
-    public TextField lastNameField;
+    public TextField last_Name_Field;
     @FXML
-    public TextField ibanField;
+    public TextField iban_Field;
     @FXML
-    public PasswordField passwordField;
+    public PasswordField password_Field;
 
     @FXML
-    public Button registerButton;
-    //endregion
+    public Button registerBtn;
 
-    boolean userNamesExists;
+    @FXML
+    public Button cancelBtn;
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        ImageView backImgBtnLayout = createImageBtnLayout(Constants.BACK_IMAGE_PATH, Constants.BACK_IMAGE_WIDTH, Constants.BACK_IMAGE_HEIGHT);
-        backBtn.setGraphic(backImgBtnLayout);
-    }
+    boolean existedUserName;
 
-    public void handleRegisterBtn_Click(ActionEvent actionEvent) {
 
-        String userName = userNameField.getText();
-        String firstName = firstNameField.getText();
-        String lastName = lastNameField.getText();
-        String password = passwordField.getText();
-        String iban = ibanField.getText();
+    public void registerBtn(ActionEvent actionEvent) {
+
+        String userName = userName_Field.getText();
+        String firstName = first_Name_Field.getText();
+        String lastName = last_Name_Field.getText();
+        String password = password_Field.getText();
+        String iban = iban_Field.getText();
 
         Node node = (Node) actionEvent.getSource();
 
-        boolean isValidated = validateText(userName, firstName, lastName, password, iban);
+        boolean verifications  = verification(userName, firstName, lastName, password, iban);
 
-        if (isValidated) {
-            registerUser(node, userName, firstName, lastName, password, iban);
+        if (verifications ) {
+            userRegister(node, userName, firstName, lastName, password, iban);
         }
 
-        messageLabel.setText(!isValidated ? "All fields are required!" : userNamesExists ? String.format("Sorry, but %s already exist. Try another!", userName) : Constants.No_Value_STRING);
+        errorsLabel.setText(!verifications  ? "You miss filling one field" : existedUserName ? String.format(" %s Already Exist in us database", userName) : Constants.No_Value_STRING);
     }
 
-    public void handleBackBtn_Click(ActionEvent actionEvent) {
+    public void cancelBtn(ActionEvent actionEvent) {
         Node node = (Node) actionEvent.getSource();
-        showScene(node, Constants.LOGIN_FXML_PATH, Constants.LOGIN_SCENE_HEADER, null);
+        showScene(node, Constants.FXML_LOGINPATH, Constants.LOGINHEADER, null);
     }
 
-    private void registerUser(Node node, String userName, String firstName, String lastName, String password, String iban) {
+    private void userRegister(Node node, String userName, String firstName, String lastName, String password, String iban) {
 
-        userNamesExists = findUser(userName);
+        existedUserName = seekingUser(userName);
 
-        if (!userNamesExists) {
-            User newUser = new User(userName, firstName, lastName, iban, password);
-            setUser(newUser);
+        if (!existedUserName) {
+            User newUsers = new User(userName, firstName, lastName, iban, password);
+            setUser(newUsers);
 
-            boolean isAdded = addUser(newUser);
+            boolean isAdded = addUsers(newUsers);
             if (isAdded) {
                 showScene(node, Constants.FXML_HOMEPATH, Constants.HOMEHEADER, getUser());
             }
         }
     }
 
-    private boolean addUser(User user) {
+    private boolean addUsers(User user) {
         return getUserService().addUser(user);
     }
 
-    private boolean findUser(String userNameInput) {
+    private boolean seekingUser(String userNameInput) {
 
         if (getUserList() == null) {
             return false;
         }
 
-        int userListSize = getUserList().size();
+        int userList_Size = getUserList().size();
 
-        if (getUserList() != null && userListSize > 0) {
+        if (getUserList() != null && userList_Size > 0) {
             for (User user : getUserList()) {
                 String userName = user.getUsername();
 
-                boolean isUserNameMatched = userNameInput.equals(userName);
-                if (isUserNameMatched) {
+                boolean userNameEqual  = userNameInput.equals(userName);
+                if (userNameEqual) {
                     return true;
                 }
             }

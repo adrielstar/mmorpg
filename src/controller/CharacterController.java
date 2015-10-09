@@ -142,7 +142,7 @@ public class CharacterController extends MainController implements Initializable
         String characterClass = (String) classBox.getSelectionModel().getSelectedItem();
         String characterLevel = levelField.getText();
 
-        isValidated = validateText(characterName, characterRace, characterClass, characterLevel);
+        isValidated = verification(characterName, characterRace, characterClass, characterLevel);
         characterNameExists = findCharacter(characterName);
 
         if (isValidated && !characterNameExists) {

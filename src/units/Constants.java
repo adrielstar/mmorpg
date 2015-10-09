@@ -10,7 +10,7 @@ public class Constants {
     public final static String APP_NAME = "Battlefield";
 
     private final static String FXML_PATH = "/fxml";
-    public final static String LOGIN_FXML_PATH = String.format("%s/loginFrame.fxml", FXML_PATH);
+    public final static String FXML_LOGINPATH = String.format("%s/loginFrame.fxml", FXML_PATH);
     public final static String SERVER_FXML_PATH = String.format("%s/serverFrame.fxml", FXML_PATH);
     public final static String PROFILE_FXML_PATH = String.format("%s/userFrame.fxml", FXML_PATH);
     public final static String CHARACTER_FXML_PATH = String.format("%s/characterFrame.fxml", FXML_PATH);
@@ -31,7 +31,7 @@ public class Constants {
 
     public final static double DEFAULT_FONT_TEXT_SIZE = 14.0d;
 
-    public final static String LOGIN_SCENE_HEADER = "Login";
+    public final static String LOGINHEADER = "Login";
     public final static String SERVER_SCENE_HEADER = "Server";
     public final static String PROFILE_SCENE_HEADER = "Profile";
     public final static String CHARACTER_SCENE_HEADER = "Characters";

@@ -143,7 +143,7 @@ abstract class MainController {
         }
     }
 
-    protected boolean validateText(String... values) {
+    protected boolean verification (String... values) {
         boolean isValidated = true;
 
         for (String v : values) {

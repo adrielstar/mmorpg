@@ -102,7 +102,7 @@ public class HomeController extends MainController {
 
     public void handleLogoutBtn_Click(ActionEvent actionEvent) {
         Node node = (Node) actionEvent.getSource();
-        showScene(node, Constants.LOGIN_FXML_PATH, Constants.LOGIN_SCENE_HEADER, null);
+        showScene(node, Constants.FXML_LOGINPATH, Constants.LOGINHEADER, null);
     }
 
     public void handleProfileBtn_Click(ActionEvent actionEvent) {
