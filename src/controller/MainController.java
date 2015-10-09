@@ -1,8 +1,5 @@
 package controller;
 
-/**
- * Created by Adriel on 10/8/2015.
- */
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,9 +22,12 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Random;
 
-abstract class MainController {
+/**
+ * Created by Adriel on 10/8/2015.
+ */
 
-    //region Fields
+
+abstract class MainController {
 
     private ServerService mServerService;
     private UserService mUserService;
@@ -79,14 +79,13 @@ abstract class MainController {
         title.setText(header);
     }
 
-    //endregion
+
 
     protected MainController() {
         setUserService(new UserServiceImpl());
         setServerService(new ServerServiceImpl());
     }
 
-    //region Methods
 
     protected void load() {
     }
@@ -175,6 +174,4 @@ abstract class MainController {
         return mServer;
     }
 
-
-    //endregion
 }

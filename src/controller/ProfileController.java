@@ -1,5 +1,7 @@
 package controller;
 
+import init.Helper;
+import init.StanderHelper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -8,8 +10,6 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import models.User;
-import init.StanderHelper;
-import init.Helper;
 
 import java.sql.Timestamp;
 import java.util.Date;
@@ -35,6 +35,8 @@ public class ProfileController extends MainController {
     public Label username_Label;
     @FXML
     public Label balance_Label;
+    @FXML
+    public Label balanceEuro_Label;
     @FXML
     public Label iban_Label;
     @FXML
@@ -66,9 +68,11 @@ public class ProfileController extends MainController {
         String balance = String.valueOf(getUser().getBalance());
         String userCharacterSlots = String.valueOf(getUser().getCharacterSlots());
         String monthsPayed = String.valueOf(getUser().getMonthsPayed());
+        String balanceEuro = "\u20ac";
 
         username_Label.setText(username);
         balance_Label.setText(balance);
+        balanceEuro_Label.setText(balanceEuro);
         iban_Label.setText(iban);
         characterSlots_Label.setText(userCharacterSlots);
         monthsPayed_Label.setText(monthsPayed);
@@ -168,7 +172,7 @@ public class ProfileController extends MainController {
             }
         }
 
-        errorsLabel.setText(getUser().getBalance() < balance ? "You don't have money on your account" : StanderHelper.No_Value_STRING);
+        errorsLabel.setText(getUser().getBalance() < balance ? "You don't have enough money on your account" : StanderHelper.No_Value_STRING);
     }
 
     public void subscriptionBtn() {
@@ -211,6 +215,4 @@ public class ProfileController extends MainController {
 
         return null;
     }
-
-    //endregion
 }

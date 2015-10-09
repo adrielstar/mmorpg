@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.TextFlow?>
 <?import java.lang.*?>
-<AnchorPane styleClass="container"
+<AnchorPane styleClass="container "
             stylesheets="/css/style.css"
             xmlns="http://javafx.com/javafx/8"
             xmlns:fx="http://javafx.com/fxml/1"
@@ -36,9 +36,13 @@
             <Label AnchorPane.topAnchor="50"
                    AnchorPane.leftAnchor="10"
                    text="Balance: "/>
+
             <Label fx:id="balance_Label"
                    AnchorPane.topAnchor="50"
                    AnchorPane.leftAnchor="110"/>
+            <Label fx:id="balanceEuro_Label"
+                   AnchorPane.topAnchor="50"
+                   AnchorPane.leftAnchor="100"/>
 
             <Label AnchorPane.topAnchor="70"
                    AnchorPane.leftAnchor="10"
@@ -91,7 +95,7 @@
                 </items>
             </ChoiceBox>
 
-            <Button text="Add Slot(s)"
+            <Button text="Add Slots"
                     onAction="#slotBtn"
                     AnchorPane.topAnchor="90"
                     AnchorPane.leftAnchor="502"/>
@@ -102,17 +106,15 @@
             <TextFlow AnchorPane.topAnchor="140"
                       AnchorPane.leftAnchor="524">
                 <Label fx:id="monthsPayed_Label"/>
-                <Label text=" "/>
                 <Label text=" Months"/>
             </TextFlow>
 
-            <Label AnchorPane.topAnchor="170"
-                   AnchorPane.leftAnchor="320"
-                   text="Choose Subscription: "/>
+
             <ChoiceBox fx:id="subscrBox"
+
                        AnchorPane.topAnchor="165"
                        AnchorPane.leftAnchor="514">
-                <value>
+                <value >
                     <String fx:value="1 Month"/>
                 </value>
                 <items>

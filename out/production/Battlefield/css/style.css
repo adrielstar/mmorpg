@@ -11,6 +11,35 @@
     -fx-alignment: center-left;
 }
 
+.grid-pane {
+    -fx-vgap: 10;
+}
+
+.grid-pane-home {
+    -fx-hgap: 15;
+}
+
+.profile-title{
+-fx-padding: 55 0 0 200px;
+}
+
+.errorMsg-home {
+-fx-padding: 55 0 0 200px;
+}
+
+.server-box-home {
+-fx-padding: 0 0 0 100px;
+}
+
+#characterContainer {
+-fx-padding: 0 0 0 200px;
+}
+
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+
+
 #containerLogin {
     -fx-padding: 0 0 150 310px;
 }
@@ -28,7 +57,7 @@
 }
 
 #profile_Container {
-    -fx-padding: 10px 5px 5px 10px;
+    -fx-padding: 0px 0px 0px 210px;
 }
 
 #scrollPane {
@@ -75,29 +104,6 @@
     -fx-padding: 0 0 0 100px;
 }
 
-.grid-pane {
-    -fx-vgap: 10;
-}
-
-.grid-pane-home {
-    -fx-hgap: 15;
-}
-
-.errorMsg-home {
--fx-padding: 55 0 0 200px;
-}
-
-.server-box-home {
--fx-padding: 0 0 0 100px;
-}
-
-#characterContainer {
--fx-padding: 0 0 0 200px;
-}
-
-.scroll-pane > .viewport {
-    -fx-background-color: transparent;
-}
 
 .text-field {
     -fx-border-radius: 4px;
