@@ -1,11 +1,12 @@
 package service;
 
-/**
- * Created by Adriel on 10/8/2015.
- */
 import models.Character;
 
 import java.util.List;
+/**
+ * Created by Adriel on 10/8/2015.
+ */
+
 
 public interface CharacterService {
     boolean addCharacter(Character character);

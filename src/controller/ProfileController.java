@@ -14,17 +14,12 @@ import models.User;
 import java.sql.Timestamp;
 import java.util.Date;
 
-
-
-
 /**
  * Created by Adriel on 10/8/2015.
  */
 
 
 public class ProfileController extends MainController {
-
-    //region UI controls
 
     @FXML
     public Label errorsLabel;

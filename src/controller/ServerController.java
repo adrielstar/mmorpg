@@ -1,12 +1,15 @@
 package controller;
 
+import javafx.scene.Node;
+import models.User;
+import javafx.event.ActionEvent;
+
+import init.StanderHelper;
+
 /**
  * Created by Adriel on 10/8/2015.
  */
-import javafx.event.ActionEvent;
-import javafx.scene.Node;
-import models.User;
-import init.StanderHelper;
+
 
 public class ServerController extends MainController {
 

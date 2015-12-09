@@ -40,8 +40,8 @@ public class Main extends Application {
         }
 
         if (root != null) {
-            Scene rootScene = new Scene(root, StanderHelper.APP_WIDTH, StanderHelper.APP_HEIGHT);
-            String title = String.format("%s - %s", header, StanderHelper.APP_NAME);
+            Scene rootScene = new Scene(root, StanderHelper.APPLICATION_WIDTH, StanderHelper.APPLICATION_HEIGHT);
+            String title = String.format("%s - %s", header, StanderHelper.APPLICATION_NAME);
 
             primaryStage.setTitle(title);
             primaryStage.setScene(rootScene);
