@@ -1,14 +1,15 @@
 package service;
 
-/**
- * Created by Adriel on 10/8/2015.
- */
-
 import dataAccObject.MainDataAccObject;
 import models.Character;
 import init.IdentetyUnit;
 
 import java.util.List;
+/**
+ * Created by Adriel on 10/8/2015.
+ */
+
+
 
 public class CharacterServiceImpl extends MainDataAccObject implements CharacterService {
 

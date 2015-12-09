@@ -1,11 +1,13 @@
 package service;
 
-/**
- * Created by Adriel on 10/8/2015.
- */
 import models.Server;
 
 import java.util.List;
+
+/**
+ * Created by Adriel on 10/8/2015.
+ */
+
 
 public interface ServerService {
     boolean addServer(Server server);

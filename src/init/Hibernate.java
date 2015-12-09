@@ -1,19 +1,23 @@
 package init;
 
+import org.hibernate.FlushMode;
+import org.hibernate.Session;
+import models.Character;
+import models.Server;
+import models.User;
+import org.hibernate.context.internal.ManagedSessionContext;
+import org.hibernate.service.ServiceRegistry;
+import org.hibernate.service.ServiceRegistryBuilder;
+
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+
 /**
  * Created by Adriel on 10/8/2015.
  */
 
-import models.Character;
-import models.Server;
-import models.User;
-import org.hibernate.FlushMode;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
-import org.hibernate.context.internal.ManagedSessionContext;
-import org.hibernate.service.ServiceRegistry;
-import org.hibernate.service.ServiceRegistryBuilder;
+
 
 public class Hibernate {
 
@@ -55,7 +59,7 @@ public class Hibernate {
         return mSession;
     }
 
-    public void commitTransaction(Session session) {
+    public void transactionManagement(Session session) {
 
         ManagedSessionContext.unbind(Hibernate.SESSION_FACTORY);
         session.getTransaction().commit();

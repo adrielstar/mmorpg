@@ -7,5 +7,5 @@ public class Credential {
 
     public final static String DATABASE_CONNECTION = "jdbc:postgresql://127.0.0.1:5432/battlefield";
     public final static String DATABASE_USER = "postgres";
-    public final static String DATABASE_PASSWORD = "daniel1986";
+    public final static String DATABASE_PASSWORD = "password";
 }

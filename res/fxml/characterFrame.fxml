@@ -30,7 +30,7 @@
 
             <Button fx:id="createBtn"
                     text="Create"
-                    onAction="#createCharacterBtn"
+                    onAction="#creatNewCharacterBtn"
                     AnchorPane.topAnchor="27"
                     AnchorPane.leftAnchor="150"/>
 
@@ -107,7 +107,7 @@
                 <Button text="createBtn"
                         GridPane.rowIndex="4"
                         GridPane.columnIndex="0"
-                        onAction="#creatNewCharacterBtn"/>
+                        onAction="#createCharacterBtn"/>
 
                 <Button fx:id="cancelBtn"
                         text="cancel"

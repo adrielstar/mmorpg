@@ -215,7 +215,6 @@ public class CharacterController extends MainController implements Initializable
     private void viewWindow(boolean viewListOfCharacter, boolean viewCharacterPanel) {
         scrollPane.setVisible(viewListOfCharacter);
         character_Box.setVisible(viewCharacterPanel);
-        panel.setVisible(!viewCharacterPanel);
     }
 
     private boolean findCharacter(String characterNameInput) {

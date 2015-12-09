@@ -107,10 +107,10 @@ abstract class MainController {
         }
 
         if (root != null) {
-            Scene rootScene = new Scene(root, StanderHelper.APP_WIDTH, StanderHelper.APP_HEIGHT);
+            Scene rootScene = new Scene(root, StanderHelper.APPLICATION_WIDTH, StanderHelper.APPLICATION_HEIGHT);
             Stage primaryStage = (Stage) node.getScene().getWindow();
 
-            String title = String.format("%s - %s", header, StanderHelper.APP_NAME);
+            String title = String.format("%s - %s", header, StanderHelper.APPLICATION_NAME);
 
             primaryStage.setTitle(title);
             primaryStage.setScene(rootScene);
@@ -161,9 +161,9 @@ abstract class MainController {
 
     protected String getAvatars() {
         Random random = new Random();
-        int avatarNr = 1 + random.nextInt(14);
+        int avatarId = 1 + random.nextInt(14);
 
-        return String.format("%s/%s.jpg", StanderHelper.IMAGE_AVATAR_PATH, avatarNr);
+        return String.format("%s/%s.jpg", StanderHelper.IMG_AVATARPATH, avatarId);
     }
 
     public void setServer(Server server) {

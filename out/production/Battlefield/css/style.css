@@ -93,7 +93,7 @@
 .errorMsg {
     -fx-font-size: 14px;
     -fx-text-fill: red;
-    -fx-padding: 2px;
+    -fx-padding: 5px;
 }
 
 #title {

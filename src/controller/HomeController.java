@@ -24,8 +24,6 @@ public class HomeController extends MainController {
     @FXML
     public VBox serverBoxs;
 
-
-
     @FXML
     public void initialize() {
 

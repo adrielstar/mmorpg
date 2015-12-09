@@ -49,8 +49,8 @@ public class LoginController extends MainController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        usernameField.setText("adriel");
-        passwordField.setText("password");
+        usernameField.setText("adriel");// for faster test fill in a exist username
+        passwordField.setText("password");// for faster test fill in a exist password
     }
 
     public void signBtn(ActionEvent actionEvent) {
